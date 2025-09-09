@@ -1,7 +1,5 @@
 <img width="851" height="315" alt="capaanalisai" src="https://github.com/user-attachments/assets/df092258-bc2f-402e-962e-2301ce8e75da" />
 
-# 📊 analisAI
-
 ![Java](https://img.shields.io/badge/Backend-SpringBoot-green?logo=java&logoColor=white)
 ![Angular](https://img.shields.io/badge/Frontend-Angular-red?logo=angular&logoColor=white)
 ![MariaDB](https://img.shields.io/badge/Database-MariaDB-blue?logo=mariadb&logoColor=white)
