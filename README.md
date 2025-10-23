@@ -73,3 +73,5 @@ npm install
 
 # 2.5 Rode o frontend em modo desenvolvimento
 ng serve
+````
+### 🔗Frontend do Projeto: [AnalisAI - Frontend](https://github.com/Cecimedeiros/AnalisAI-Front.git)
