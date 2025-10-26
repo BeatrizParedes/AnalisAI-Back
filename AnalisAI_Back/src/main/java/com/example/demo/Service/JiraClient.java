@@ -1,8 +1,8 @@
-package com.example.demo.service;
+package com.example.demo.Service;
 
-import com.example.demo.service.dto.IssueSummary;
-import com.example.demo.service.dto.JiraSearchJqlRequest;
-import com.example.demo.service.dto.JiraSearchJqlResponse;
+import com.example.demo.DTO.IssueSummary;
+import com.example.demo.DTO.JiraSearchJqlRequest;
+import com.example.demo.DTO.JiraSearchJqlResponse;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpHeaders;

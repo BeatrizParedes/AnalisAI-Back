@@ -1,7 +1,7 @@
-package com.example.demo.controller;
+package com.example.demo.Controller;
 
-import com.example.demo.service.JiraClient;
-import com.example.demo.service.dto.IssueSummary;
+import com.example.demo.Service.JiraClient;
+import com.example.demo.DTO.IssueSummary;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;

@@ -1,5 +1,5 @@
 // src/main/java/com/example/demo/service/dto/IssueSummary.java
-package com.example.demo.service.dto;
+package com.example.demo.DTO;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

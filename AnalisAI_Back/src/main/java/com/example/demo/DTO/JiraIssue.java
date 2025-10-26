@@ -1,6 +1,9 @@
-package com.example.demo.service.dto;
+package com.example.demo.DTO;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
-public record JiraStatus(String name) {}
+public record JiraIssue(
+    String key,
+    JiraFields fields
+) {}
