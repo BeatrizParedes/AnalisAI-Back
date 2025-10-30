@@ -8,13 +8,10 @@ import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Service;
-import org.springframework.util.LinkedMultiValueMap;
-import org.springframework.util.MultiValueMap;
 import org.springframework.web.reactive.function.client.WebClient;
 import org.springframework.web.util.UriComponentsBuilder;
 import reactor.core.publisher.Mono;
 
-import java.nio.charset.StandardCharsets;
 import java.time.Instant;
 import java.util.*;
 
@@ -56,25 +53,24 @@ public class AuthService {
      * 🔹 Gera a URL de autorização (login Atlassian)
      */
     public String buildAuthorizationUrl(String clientId, String redirectUri, String scope) {
-    String state = UUID.randomUUID().toString(); // Valor anti-CSRF
+        String state = UUID.randomUUID().toString(); // Valor anti-CSRF
 
-    log.info("Gerando URL de autorização Atlassian com redirect_uri={}", redirectUri);
+        log.info("Gerando URL de autorização Atlassian com redirect_uri={}", redirectUri);
 
-    return UriComponentsBuilder.newInstance()
-            .scheme("https")
-            .host("auth.atlassian.com")
-            .path("/authorize")
-            .queryParam("audience", "api.atlassian.com")
-            .queryParam("client_id", clientId)
-            .queryParam("scope", scope)
-            .queryParam("redirect_uri", redirectUri)
-            .queryParam("state", state)
-            .queryParam("response_type", "code")
-            .queryParam("prompt", "consent")
-            .build()
-            .toUriString();
-}
-
+        return UriComponentsBuilder.newInstance()
+                .scheme("https")
+                .host("auth.atlassian.com")
+                .path("/authorize")
+                .queryParam("audience", "api.atlassian.com")
+                .queryParam("client_id", clientId)
+                .queryParam("scope", scope)
+                .queryParam("redirect_uri", redirectUri)
+                .queryParam("state", state)
+                .queryParam("response_type", "code")
+                .queryParam("prompt", "consent")
+                .build()
+                .toUriString();
+    }
 
     /**
      * 🔹 Troca o authorization code recebido por um access token + refresh token
@@ -82,23 +78,25 @@ public class AuthService {
     public TokenResponse exchangeCodeForToken(String code) {
         log.info("Trocando authorization code por token...");
 
-        MultiValueMap<String, String> body = new LinkedMultiValueMap<>();
-        body.add("grant_type", "authorization_code");
-        body.add("client_id", clientId);
-        body.add("client_secret", clientSecret);
-        body.add("code", code);
-        body.add("redirect_uri", redirectUri);
+        Map<String, Object> body = new HashMap<>();
+        body.put("grant_type", "authorization_code");
+        body.put("client_id", clientId);
+        body.put("client_secret", clientSecret);
+        body.put("code", code);
+        body.put("redirect_uri", redirectUri);
 
         Map<String, Object> resp = webClient.post()
                 .uri(AUTH_TOKEN)
-                .contentType(MediaType.APPLICATION_FORM_URLENCODED)
+                .contentType(MediaType.APPLICATION_JSON)
                 .bodyValue(body)
                 .retrieve()
+                .onStatus(status -> status.isError(), response ->
+                        response.bodyToMono(String.class).flatMap(errorBody -> {
+                            log.error("Erro Atlassian ao trocar code: {}", errorBody);
+                            return Mono.error(new RuntimeException("Erro Atlassian: " + errorBody));
+                        })
+                )
                 .bodyToMono(new ParameterizedTypeReference<Map<String, Object>>() {})
-                .onErrorResume(ex -> {
-                    log.error("Erro ao trocar code por token: {}", ex.getMessage());
-                    return Mono.error(new RuntimeException("Erro ao trocar code por token", ex));
-                })
                 .block();
 
         return toTokenResponse(resp);
@@ -110,22 +108,24 @@ public class AuthService {
     public TokenResponse refreshAccessToken(String refreshToken) {
         log.info("Atualizando access token via refresh token...");
 
-        MultiValueMap<String, String> body = new LinkedMultiValueMap<>();
-        body.add("grant_type", "refresh_token");
-        body.add("client_id", clientId);
-        body.add("client_secret", clientSecret);
-        body.add("refresh_token", refreshToken);
+        Map<String, Object> body = new HashMap<>();
+        body.put("grant_type", "refresh_token");
+        body.put("client_id", clientId);
+        body.put("client_secret", clientSecret);
+        body.put("refresh_token", refreshToken);
 
         Map<String, Object> resp = webClient.post()
                 .uri(AUTH_TOKEN)
-                .contentType(MediaType.APPLICATION_FORM_URLENCODED)
+                .contentType(MediaType.APPLICATION_JSON)
                 .bodyValue(body)
                 .retrieve()
+                .onStatus(status -> status.isError(), response ->
+                        response.bodyToMono(String.class).flatMap(errorBody -> {
+                            log.error("Erro Atlassian ao atualizar token: {}", errorBody);
+                            return Mono.error(new RuntimeException("Erro Atlassian: " + errorBody));
+                        })
+                )
                 .bodyToMono(new ParameterizedTypeReference<Map<String, Object>>() {})
-                .onErrorResume(ex -> {
-                    log.error("Erro ao dar refresh no token: {}", ex.getMessage());
-                    return Mono.error(new RuntimeException("Erro ao dar refresh do token", ex));
-                })
                 .block();
 
         return toTokenResponse(resp);
@@ -141,11 +141,13 @@ public class AuthService {
                 .uri(ACCESSIBLE_RESOURCES)
                 .header(HttpHeaders.AUTHORIZATION, "Bearer " + accessToken)
                 .retrieve()
+                .onStatus(status -> status.isError(), response ->
+                        response.bodyToMono(String.class).flatMap(errorBody -> {
+                            log.error("Erro Atlassian ao buscar accessible-resources: {}", errorBody);
+                            return Mono.error(new RuntimeException("Erro Atlassian: " + errorBody));
+                        })
+                )
                 .bodyToMono(new ParameterizedTypeReference<List<Map<String, Object>>>() {})
-                .onErrorResume(ex -> {
-                    log.error("Erro ao buscar accessible-resources: {}", ex.getMessage());
-                    return Mono.error(new RuntimeException("Erro ao buscar accessible-resources", ex));
-                })
                 .block();
     }
 
