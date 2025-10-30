@@ -19,31 +19,62 @@ public class JiraController {
         this.jira = jira;
     }
 
-    /** ✅ Testa conexão e autenticação com Jira Cloud */
+    /**
+     * ✅ Testa conexão e autenticação com Jira Cloud.
+     * Requer cabeçalho Authorization: Bearer <access_token>
+     */
     @GetMapping("/ping")
-    public ResponseEntity<String> ping() {
-        String result = jira.pingMe();
+    public ResponseEntity<String> ping(@RequestHeader("Authorization") String authorization) {
+        String accessToken = extractToken(authorization);
+        String result = jira.pingMe(accessToken);
         return ResponseEntity.ok(result);
     }
 
-    /** ✅ Lista projetos brutos (opcional, útil pra debug) */
+    /**
+     * ✅ Lista projetos (bruto).
+     * Requer cabeçalho Authorization: Bearer <access_token>
+     */
     @GetMapping("/projects/raw")
-    public ResponseEntity<String> listProjects() {
-        String result = jira.listProjectsRaw();
+    public ResponseEntity<String> listProjects(@RequestHeader("Authorization") String authorization) {
+        String accessToken = extractToken(authorization);
+        String result = jira.listProjectsRaw(accessToken);
         return ResponseEntity.ok(result);
     }
 
-    /** ✅ Lista resumida de issues (varre todas as páginas) */
+    /**
+     * ✅ Lista resumida de issues (todas as páginas).
+     * Requer cabeçalho Authorization: Bearer <access_token>
+     */
     @GetMapping("/issues")
-    public List<IssueSummary> list() {
-        return jira.fetchAllAsSummaries();
+    public List<IssueSummary> list(@RequestHeader("Authorization") String authorization) {
+        String accessToken = extractToken(authorization);
+        return jira.fetchAllAsSummaries(accessToken);
     }
 
-    /** ✅ RAW via POST com body { "nextPageToken": "..." } */
+    /**
+     * ✅ Busca RAW de issues (POST)
+     * Body opcional: { "nextPageToken": "50" }
+     * Requer cabeçalho Authorization: Bearer <access_token>
+     */
     @PostMapping("/issues/raw")
-    public ResponseEntity<String> getRawIssuesPost(@RequestBody(required = false) Map<String, String> body) {
-        String token = (body != null) ? body.get("nextPageToken") : null;
-        String result = jira.searchPageRaw(token);
+    public ResponseEntity<String> getRawIssuesPost(
+            @RequestHeader("Authorization") String authorization,
+            @RequestBody(required = false) Map<String, String> body
+    ) {
+        String accessToken = extractToken(authorization);
+        String nextPageToken = (body != null) ? body.get("nextPageToken") : null;
+        String result = jira.searchPageRaw(accessToken, nextPageToken);
         return ResponseEntity.ok(result);
+    }
+
+    /**
+     * 🔒 Extrai o token do header Authorization.
+     * Exemplo: "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9..."
+     */
+    private String extractToken(String authorizationHeader) {
+        if (authorizationHeader == null || !authorizationHeader.startsWith("Bearer ")) {
+            throw new IllegalArgumentException("Cabeçalho Authorization inválido ou ausente");
+        }
+        return authorizationHeader.substring(7);
     }
 }

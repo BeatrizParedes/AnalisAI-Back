@@ -11,7 +11,6 @@ import org.springframework.web.reactive.function.client.ExchangeStrategies;
 import org.springframework.web.reactive.function.client.WebClient;
 import reactor.core.publisher.Mono;
 
-import java.nio.charset.StandardCharsets;
 import java.util.*;
 
 @Service
@@ -21,23 +20,24 @@ public class JiraClient {
     private static final String PROJECT_SEARCH_PATH = "/rest/api/3/project/search";
     private static final String MYSELF_PATH = "/rest/api/3/myself";
 
-    private final WebClient webClient;
+    private final WebClient.Builder webClientBuilder;
+    private final String cloudId;
+    private final String apiBaseUrl;
     private final String defaultJql;
     private final int pageSize;
 
     public JiraClient(
-            @Value("${jira.base-url}") String baseUrl,
-            @Value("${jira.email}") String email,
-            @Value("${jira.api-token}") String apiToken,
+            @Value("${ATLASSIAN_CLOUD_ID}") String cloudId,
             @Value("${jira.jql:ORDER BY updated DESC}") String defaultJql,
             @Value("${jira.page-size:50}") Integer pageSize
     ) {
-        String auth = Base64.getEncoder()
-                .encodeToString((email + ":" + apiToken).getBytes(StandardCharsets.UTF_8));
+        this.cloudId = cloudId;
+        this.apiBaseUrl = "https://api.atlassian.com/ex/jira/" + cloudId;
+        this.defaultJql = defaultJql;
+        this.pageSize = (pageSize != null ? pageSize : 50);
 
-        this.webClient = WebClient.builder()
-                .baseUrl(baseUrl)
-                .defaultHeader(HttpHeaders.AUTHORIZATION, "Basic " + auth)
+        this.webClientBuilder = WebClient.builder()
+                .baseUrl(apiBaseUrl)
                 .defaultHeader(HttpHeaders.ACCEPT, MediaType.APPLICATION_JSON_VALUE)
                 .defaultHeader(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON_VALUE)
                 .exchangeStrategies(ExchangeStrategies.builder()
@@ -50,16 +50,22 @@ public class JiraClient {
                 .filter(ExchangeFilterFunction.ofResponseProcessor(resp -> {
                     System.out.println("<< " + resp.statusCode());
                     return Mono.just(resp);
-                }))
-                .build();
-
-        this.defaultJql = defaultJql;
-        this.pageSize = (pageSize != null ? pageSize : 50);
+                }));
     }
 
-    /** ✅ Testa autenticação básica */
-    public String pingMe() {
-        return webClient.get()
+    /**
+     * Cria um WebClient com o access token atual do usuário.
+     */
+    private WebClient webClientWithToken(String accessToken) {
+        return webClientBuilder
+                .clone()
+                .defaultHeader(HttpHeaders.AUTHORIZATION, "Bearer " + accessToken)
+                .build();
+    }
+
+    /** ✅ Testa autenticação usando /myself */
+    public String pingMe(String accessToken) {
+        return webClientWithToken(accessToken).get()
                 .uri(MYSELF_PATH)
                 .retrieve()
                 .bodyToMono(String.class)
@@ -67,17 +73,17 @@ public class JiraClient {
                 .block();
     }
 
-    /** ✅ Lista projetos */
-    public String listProjectsRaw() {
-        return webClient.get()
+    /** ✅ Lista projetos (usando OAuth) */
+    public String listProjectsRaw(String accessToken) {
+        return webClientWithToken(accessToken).get()
                 .uri(PROJECT_SEARCH_PATH)
                 .retrieve()
                 .bodyToMono(String.class)
                 .block();
     }
 
-    /** ✅ Busca issues (RAW) — formato correto Jira Cloud */
-    public String searchPageRaw(String nextPageToken) {
+    /** ✅ Busca issues (RAW) — com JQL e paginação */
+    public String searchPageRaw(String accessToken, String nextPageToken) {
         try {
             int startAt = 0;
             if (nextPageToken != null && !nextPageToken.isBlank()) {
@@ -92,9 +98,9 @@ public class JiraClient {
             body.put("maxResults", pageSize);
             body.put("fields", List.of("summary", "status", "assignee", "updated", "created", "project", "issuetype"));
 
-            System.out.println("📤 Corpo enviado ao Jira Cloud: " + body);
+            System.out.println("📤 Corpo enviado ao Jira Cloud (OAuth): " + body);
 
-            String response = webClient.post()
+            String response = webClientWithToken(accessToken).post()
                     .uri(SEARCH_JQL_PATH)
                     .bodyValue(body)
                     .retrieve()
@@ -116,8 +122,8 @@ public class JiraClient {
         }
     }
 
-    /** ✅ Lista resumida com paginação */
-    public List<IssueSummary> fetchAllAsSummaries() {
+    /** ✅ Busca resumida com paginação */
+    public List<IssueSummary> fetchAllAsSummaries(String accessToken) {
         int startAt = 0;
         boolean last = false;
         List<IssueSummary> out = new ArrayList<>();
@@ -129,7 +135,7 @@ public class JiraClient {
             body.put("maxResults", pageSize);
             body.put("fields", List.of("summary", "status", "assignee", "updated", "created", "project", "issuetype"));
 
-            JiraSearchJqlResponse resp = webClient.post()
+            JiraSearchJqlResponse resp = webClientWithToken(accessToken).post()
                     .uri(SEARCH_JQL_PATH)
                     .bodyValue(body)
                     .retrieve()
