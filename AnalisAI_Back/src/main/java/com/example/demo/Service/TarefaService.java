@@ -1,7 +1,7 @@
-package com.example.demo.service;
+package com.example.demo.Service;
 
-import com.example.demo.model.Tarefa;
-import com.example.demo.repository.TarefaRepository;
+import com.example.demo.Model.Tarefa;
+import com.example.demo.Repository.TarefaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
