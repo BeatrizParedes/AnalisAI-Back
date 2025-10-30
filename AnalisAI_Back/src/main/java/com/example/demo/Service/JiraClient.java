@@ -1,5 +1,5 @@
-// src/main/java/com/example/demo/Service/JiraClient.java
-package com.example.demo.Service;
+// src/main/java/com/example/demo/service/JiraClient.java
+package com.example.demo.service;
 
 import com.example.demo.DTO.*;
 import org.springframework.beans.factory.annotation.Value;
@@ -12,16 +12,14 @@ import org.springframework.web.reactive.function.client.WebClient;
 import reactor.core.publisher.Mono;
 
 import java.nio.charset.StandardCharsets;
-import java.util.ArrayList;
-import java.util.Base64;
-import java.util.List;
+import java.util.*;
 
 @Service
 public class JiraClient {
 
-    private static final String SEARCH_JQL_PATH    = "/rest/api/3/search/jql";
+    private static final String SEARCH_JQL_PATH = "/rest/api/3/search";
     private static final String PROJECT_SEARCH_PATH = "/rest/api/3/project/search";
-    private static final String MYSELF_PATH         = "/rest/api/3/myself";
+    private static final String MYSELF_PATH = "/rest/api/3/myself";
 
     private final WebClient webClient;
     private final String defaultJql;
@@ -34,12 +32,12 @@ public class JiraClient {
             @Value("${jira.jql:ORDER BY updated DESC}") String defaultJql,
             @Value("${jira.page-size:50}") Integer pageSize
     ) {
-        String basic = Base64.getEncoder()
+        String auth = Base64.getEncoder()
                 .encodeToString((email + ":" + apiToken).getBytes(StandardCharsets.UTF_8));
 
         this.webClient = WebClient.builder()
                 .baseUrl(baseUrl)
-                .defaultHeader(HttpHeaders.AUTHORIZATION, "Basic " + basic)
+                .defaultHeader(HttpHeaders.AUTHORIZATION, "Basic " + auth)
                 .defaultHeader(HttpHeaders.ACCEPT, MediaType.APPLICATION_JSON_VALUE)
                 .defaultHeader(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON_VALUE)
                 .exchangeStrategies(ExchangeStrategies.builder()
@@ -59,6 +57,7 @@ public class JiraClient {
         this.pageSize = (pageSize != null ? pageSize : 50);
     }
 
+    /** ✅ Testa autenticação básica */
     public String pingMe() {
         return webClient.get()
                 .uri(MYSELF_PATH)
@@ -68,6 +67,7 @@ public class JiraClient {
                 .block();
     }
 
+    /** ✅ Lista projetos */
     public String listProjectsRaw() {
         return webClient.get()
                 .uri(PROJECT_SEARCH_PATH)
@@ -76,40 +76,62 @@ public class JiraClient {
                 .block();
     }
 
-    /** RAW de /search/jql — envia nextPageToken opcional */
+    /** ✅ Busca issues (RAW) — formato correto Jira Cloud */
     public String searchPageRaw(String nextPageToken) {
-        JiraSearchJqlRequest req = new JiraSearchJqlRequest(
-                defaultJql,
-                pageSize,
-                List.of("summary","status","assignee","updated","created","project","issuetype"),
-                (nextPageToken != null && !nextPageToken.isBlank()) ? nextPageToken : null
-        );
+        try {
+            int startAt = 0;
+            if (nextPageToken != null && !nextPageToken.isBlank()) {
+                try {
+                    startAt = Integer.parseInt(nextPageToken);
+                } catch (NumberFormatException ignored) {}
+            }
 
-        return webClient.post()
-                .uri(SEARCH_JQL_PATH)
-                .bodyValue(req)
-                .retrieve()
-                .bodyToMono(String.class)
-                .block();
+            Map<String, Object> body = new HashMap<>();
+            body.put("jql", defaultJql);
+            body.put("startAt", startAt);
+            body.put("maxResults", pageSize);
+            body.put("fields", List.of("summary", "status", "assignee", "updated", "created", "project", "issuetype"));
+
+            System.out.println("📤 Corpo enviado ao Jira Cloud: " + body);
+
+            String response = webClient.post()
+                    .uri(SEARCH_JQL_PATH)
+                    .bodyValue(body)
+                    .retrieve()
+                    .onStatus(status -> status.value() >= 400, resp -> {
+                        System.err.println("❌ Jira retornou erro HTTP: " + resp.statusCode());
+                        return resp.bodyToMono(String.class)
+                                .flatMap(msg -> Mono.error(new RuntimeException("Erro Jira: " + msg)));
+                    })
+                    .bodyToMono(String.class)
+                    .block();
+
+            System.out.println("📦 Jira response (raw): " + response);
+            return response;
+
+        } catch (Exception e) {
+            System.err.println("❌ Erro ao buscar issues no Jira: " + e.getMessage());
+            e.printStackTrace();
+            return "{\"error\": \"" + e.getMessage() + "\"}";
+        }
     }
 
-    /** Lista resumida para o front — pagina até isLast=true */
+    /** ✅ Lista resumida com paginação */
     public List<IssueSummary> fetchAllAsSummaries() {
-        String token = null;
+        int startAt = 0;
         boolean last = false;
         List<IssueSummary> out = new ArrayList<>();
 
         do {
-            JiraSearchJqlRequest req = new JiraSearchJqlRequest(
-                    defaultJql,
-                    pageSize,
-                    List.of("summary","status","assignee","updated","created","project","issuetype"),
-                    token
-            );
+            Map<String, Object> body = new HashMap<>();
+            body.put("jql", defaultJql);
+            body.put("startAt", startAt);
+            body.put("maxResults", pageSize);
+            body.put("fields", List.of("summary", "status", "assignee", "updated", "created", "project", "issuetype"));
 
             JiraSearchJqlResponse resp = webClient.post()
                     .uri(SEARCH_JQL_PATH)
-                    .bodyValue(req)
+                    .bodyValue(body)
                     .retrieve()
                     .bodyToMono(JiraSearchJqlResponse.class)
                     .block();
@@ -127,9 +149,10 @@ public class JiraClient {
                 });
             }
 
-            token = (resp != null) ? resp.nextPageToken() : null;
-            last  = (resp != null && Boolean.TRUE.equals(resp.isLast()));
-        } while (!last && token != null && !token.isBlank());
+            startAt += pageSize;
+            last = (resp == null || resp.issues() == null || resp.issues().isEmpty());
+
+        } while (!last);
 
         return out;
     }

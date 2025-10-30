@@ -1,6 +1,6 @@
-package com.example.demo.Repository;
+package com.example.demo.repository;
 
-import com.example.demo.Model.Tarefa;
+import com.example.demo.model.Tarefa;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;
