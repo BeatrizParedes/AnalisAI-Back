@@ -1,14 +1,12 @@
-// src/main/java/com/example/demo/service/JiraClient.java
 package com.example.demo.service;
 
 import com.example.demo.DTO.*;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Service;
-import org.springframework.web.reactive.function.client.ExchangeFilterFunction;
-import org.springframework.web.reactive.function.client.ExchangeStrategies;
-import org.springframework.web.reactive.function.client.WebClient;
+import org.springframework.web.reactive.function.client.*;
 import reactor.core.publisher.Mono;
 
 import java.util.*;
@@ -16,46 +14,43 @@ import java.util.*;
 @Service
 public class JiraClient {
 
-    private static final String SEARCH_JQL_PATH = "/rest/api/3/search";
+    // ✅ CORREÇÃO 1: Endpoint correto para POST JQL na API v3
+    private static final String SEARCH_JQL_PATH = "/rest/api/3/search/jql"; 
     private static final String PROJECT_SEARCH_PATH = "/rest/api/3/project/search";
     private static final String MYSELF_PATH = "/rest/api/3/myself";
 
     private final WebClient.Builder webClientBuilder;
-    private final String cloudId;
     private final String apiBaseUrl;
     private final String defaultJql;
     private final int pageSize;
+    private final ObjectMapper mapper = new ObjectMapper();
 
     public JiraClient(
-            @Value("${ATLASSIAN_CLOUD_ID}") String cloudId,
+            @Value("${jira.base-url}") String apiBaseUrl, 
             @Value("${jira.jql:ORDER BY updated DESC}") String defaultJql,
             @Value("${jira.page-size:50}") Integer pageSize
     ) {
-        this.cloudId = cloudId;
-        this.apiBaseUrl = "https://api.atlassian.com/ex/jira/" + cloudId;
+        this.apiBaseUrl = apiBaseUrl; 
         this.defaultJql = defaultJql;
         this.pageSize = (pageSize != null ? pageSize : 50);
+
+        System.out.println("✅ JiraClient inicializado.");
+        System.out.println("🌐 Base URL Jira API: " + this.apiBaseUrl);
 
         this.webClientBuilder = WebClient.builder()
                 .baseUrl(apiBaseUrl)
                 .defaultHeader(HttpHeaders.ACCEPT, MediaType.APPLICATION_JSON_VALUE)
                 .defaultHeader(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON_VALUE)
-                .exchangeStrategies(ExchangeStrategies.builder()
-                        .codecs(c -> c.defaultCodecs().maxInMemorySize(16 * 1024 * 1024))
-                        .build())
                 .filter(ExchangeFilterFunction.ofRequestProcessor(req -> {
-                    System.out.println(">> " + req.method() + " " + req.url());
+                    System.out.println("➡️  [REQUEST] " + req.method() + " " + req.url());
                     return Mono.just(req);
                 }))
                 .filter(ExchangeFilterFunction.ofResponseProcessor(resp -> {
-                    System.out.println("<< " + resp.statusCode());
+                    System.out.println("⬅️  [RESPONSE] HTTP " + resp.statusCode());
                     return Mono.just(resp);
                 }));
     }
 
-    /**
-     * Cria um WebClient com o access token atual do usuário.
-     */
     private WebClient webClientWithToken(String accessToken) {
         return webClientBuilder
                 .clone()
@@ -63,103 +58,169 @@ public class JiraClient {
                 .build();
     }
 
-    /** ✅ Testa autenticação usando /myself */
+    /** 🔍 Testa autenticação */
     public String pingMe(String accessToken) {
+        System.out.println("🔍 Testando conexão com Jira Cloud via /myself ...");
         return webClientWithToken(accessToken).get()
                 .uri(MYSELF_PATH)
                 .retrieve()
                 .bodyToMono(String.class)
-                .onErrorResume(ex -> Mono.just("erro ao chamar /myself: " + ex.getMessage()))
+                .onErrorResume(ex -> Mono.just("{\"error\": \"Erro ao chamar /myself: " + ex.getMessage() + "\"}"))
                 .block();
     }
 
-    /** ✅ Lista projetos (usando OAuth) */
+    /** 📂 Lista projetos */
     public String listProjectsRaw(String accessToken) {
+        System.out.println("📂 Listando projetos...");
         return webClientWithToken(accessToken).get()
                 .uri(PROJECT_SEARCH_PATH)
                 .retrieve()
                 .bodyToMono(String.class)
+                .onErrorResume(ex -> Mono.just("{\"error\": \"Erro ao listar projetos: " + ex.getMessage() + "\"}"))
                 .block();
     }
 
-    /** ✅ Busca issues (RAW) — com JQL e paginação */
+    /** 🔄 Busca issues com paginação (endpoint /search/jql) */
     public String searchPageRaw(String accessToken, String nextPageToken) {
         try {
             int startAt = 0;
             if (nextPageToken != null && !nextPageToken.isBlank()) {
-                try {
-                    startAt = Integer.parseInt(nextPageToken);
-                } catch (NumberFormatException ignored) {}
+                startAt = Integer.parseInt(nextPageToken);
             }
 
-            Map<String, Object> body = new HashMap<>();
+            // Estrutura do corpo da requisição POST para /search/jql
+            Map<String, Object> body = new LinkedHashMap<>();
             body.put("jql", defaultJql);
             body.put("startAt", startAt);
             body.put("maxResults", pageSize);
-            body.put("fields", List.of("summary", "status", "assignee", "updated", "created", "project", "issuetype"));
+            
+            // ✅ CORREÇÃO 2: Garantir que 'key' esteja sempre na lista de campos
+            body.put("fields", List.of("key", "summary", "status", "assignee", "updated", "created", "project", "issuetype"));
 
-            System.out.println("📤 Corpo enviado ao Jira Cloud (OAuth): " + body);
+            System.out.println("📤 Enviando requisição para " + SEARCH_JQL_PATH + " → startAt=" + startAt);
+            
+            // ✅ CORREÇÃO 3: Serializar o Map para String JSON explicitamente
+            String jsonBody = mapper.writeValueAsString(body);
+            System.out.println("📦 Corpo enviado (String): " + jsonBody);
 
-            String response = webClientWithToken(accessToken).post()
+            Map<String, Object> response = webClientWithToken(accessToken).post()
                     .uri(SEARCH_JQL_PATH)
-                    .bodyValue(body)
+                    .contentType(MediaType.APPLICATION_JSON)
+                    .bodyValue(jsonBody) // ⬅️ Envia a string JSON pura
                     .retrieve()
-                    .onStatus(status -> status.value() >= 400, resp -> {
-                        System.err.println("❌ Jira retornou erro HTTP: " + resp.statusCode());
-                        return resp.bodyToMono(String.class)
-                                .flatMap(msg -> Mono.error(new RuntimeException("Erro Jira: " + msg)));
-                    })
-                    .bodyToMono(String.class)
+                    // Tratamento de status para erro HTTP
+                    .onStatus(status -> status.value() >= 400, resp -> resp.bodyToMono(String.class)
+                            .flatMap(msg -> Mono.error(new RuntimeException("Erro Jira HTTP " + resp.statusCode().value() + ": " + msg))))
+                    .bodyToMono(Map.class)
                     .block();
 
-            System.out.println("📦 Jira response (raw): " + response);
-            return response;
+            if (response == null) {
+                return "{\"error\": \"Resposta vazia da API do Jira\"}";
+            }
+
+            // Lógica de paginação
+            List<Map<String, Object>> issues = (List<Map<String, Object>>) response.get("issues");
+            Integer total = (Integer) response.getOrDefault("total", 0);
+            Integer maxResults = (Integer) response.getOrDefault("maxResults", pageSize);
+
+            boolean hasNext = (startAt + maxResults) < total;
+            String nextToken = hasNext ? String.valueOf(startAt + maxResults) : null;
+
+            Map<String, Object> paginated = new LinkedHashMap<>();
+            paginated.put("page", (startAt / pageSize) + 1);
+            paginated.put("pageSize", pageSize);
+            paginated.put("total", total);
+            paginated.put("issues", issues);
+            paginated.put("hasNext", hasNext);
+            paginated.put("nextPageToken", nextToken);
+
+            return mapper.writeValueAsString(paginated);
 
         } catch (Exception e) {
             System.err.println("❌ Erro ao buscar issues no Jira: " + e.getMessage());
-            e.printStackTrace();
-            return "{\"error\": \"" + e.getMessage() + "\"}";
+            return "{\"error\": \"" + e.getMessage().replace("\"", "'") + "\"}";
         }
     }
 
-    /** ✅ Busca resumida com paginação */
+    /** 🧩 Busca todas as issues e retorna como lista de IssueSummary */
     public List<IssueSummary> fetchAllAsSummaries(String accessToken) {
-        int startAt = 0;
-        boolean last = false;
-        List<IssueSummary> out = new ArrayList<>();
+        List<IssueSummary> summaries = new ArrayList<>();
+        String nextPageToken = null;
 
-        do {
-            Map<String, Object> body = new HashMap<>();
-            body.put("jql", defaultJql);
-            body.put("startAt", startAt);
-            body.put("maxResults", pageSize);
-            body.put("fields", List.of("summary", "status", "assignee", "updated", "created", "project", "issuetype"));
+        try {
+            boolean hasNext;
 
-            JiraSearchJqlResponse resp = webClientWithToken(accessToken).post()
-                    .uri(SEARCH_JQL_PATH)
-                    .bodyValue(body)
-                    .retrieve()
-                    .bodyToMono(JiraSearchJqlResponse.class)
-                    .block();
+            do {
+                String jsonResponse = searchPageRaw(accessToken, nextPageToken);
+                Map<String, Object> page = mapper.readValue(jsonResponse, Map.class);
 
-            if (resp != null && resp.issues() != null) {
-                resp.issues().forEach(i -> {
-                    var f = i.fields();
-                    out.add(new IssueSummary(
-                            i.key(),
-                            f != null ? f.summary() : null,
-                            f != null && f.status() != null ? f.status().name() : null,
-                            f != null && f.assignee() != null ? f.assignee().displayName() : null,
-                            f != null ? f.updated() : null
-                    ));
-                });
-            }
+                // Tratamento para JSON de erro
+                if (page.containsKey("error")) {
+                    System.err.println("❌ Erro retornado na paginação: " + page.get("error"));
+                    break;
+                }
 
-            startAt += pageSize;
-            last = (resp == null || resp.issues() == null || resp.issues().isEmpty());
+                List<Map<String, Object>> issues = (List<Map<String, Object>>) page.get("issues");
+                if (issues != null) {
+                    for (Map<String, Object> issue : issues) {
+                        summaries.add(convertToSummary(issue));
+                    }
+                }
 
-        } while (!last);
+                hasNext = Boolean.TRUE.equals(page.get("hasNext"));
+                nextPageToken = (String) page.get("nextPageToken");
 
-        return out;
+                System.out.println("✅ Fetched " + summaries.size() + " issues até agora...");
+
+            } while (hasNext);
+
+        } catch (Exception e) {
+            System.err.println("❌ Erro ao buscar summaries: " + e.getMessage());
+        }
+
+        return summaries;
+    }
+
+    /** 🔄 Converte um mapa genérico da issue em IssueSummary */
+    private IssueSummary convertToSummary(Map<String, Object> issueMap) {
+        try {
+            String key = (String) issueMap.get("key");
+            Map<String, Object> fields = (Map<String, Object>) issueMap.get("fields");
+
+            String summary = (String) fields.getOrDefault("summary", "");
+            Map<String, Object> statusObj = (Map<String, Object>) fields.get("status");
+            String status = statusObj != null ? (String) statusObj.get("name") : null;
+
+            Map<String, Object> assigneeObj = (Map<String, Object>) fields.get("assignee");
+            String assignee = assigneeObj != null ? (String) assigneeObj.get("displayName") : null;
+            
+            // Lendo e usando os 8 campos do seu DTO atualizado
+            String updated = (String) fields.get("updated");
+            String created = (String) fields.get("created");
+
+            Map<String, Object> projectObj = (Map<String, Object>) fields.get("project");
+            String project = projectObj != null ? (String) projectObj.get("name") : null;
+
+            Map<String, Object> issueTypeObj = (Map<String, Object>) fields.get("issuetype");
+            String issueType = issueTypeObj != null ? (String) issueTypeObj.get("name") : null;
+
+            // CHAMA CORRETA (8 ARGUMENTOS)
+            return new IssueSummary(key, summary, status, assignee, project, issueType, created, updated); 
+
+        } catch (Exception e) {
+            System.err.println("⚠️ Erro ao converter issue: " + e.getMessage());
+            
+            // CHAMA DE ERRO CORRETA (8 ARGUMENTOS)
+            return new IssueSummary(
+                "?",                    // key
+                "Erro ao converter",    // summary
+                (String) null,          // status
+                (String) null,          // assignee
+                (String) null,          // project
+                (String) null,          // issueType
+                (String) null,          // created
+                (String) null           // updated
+            );
+        }
     }
 }
