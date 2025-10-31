@@ -1,9 +1,7 @@
-package com.example.demo.Service;
+// src/main/java/com/example/demo/service/JiraClient.java
+package com.example.demo.service;
 
-import com.example.demo.DTO.IssueSummary;
-import com.example.demo.DTO.JiraSearchJqlRequest;
-import com.example.demo.DTO.JiraSearchJqlResponse;
-import lombok.extern.slf4j.Slf4j;
+import com.example.demo.DTO.*;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
@@ -11,104 +9,135 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.reactive.function.client.ExchangeFilterFunction;
 import org.springframework.web.reactive.function.client.ExchangeStrategies;
 import org.springframework.web.reactive.function.client.WebClient;
+import reactor.core.publisher.Mono;
 
-import java.nio.charset.StandardCharsets;
-import java.util.ArrayList;
-import java.util.Base64;
-import java.util.List;
+import java.util.*;
 
-@Slf4j
 @Service
 public class JiraClient {
 
-    // ✅ endpoint travado numa constante (evita typos)
-    private static final String SEARCH_JQL_PATH = "/rest/api/3/search/jql";
+    private static final String SEARCH_JQL_PATH = "/rest/api/3/search";
     private static final String PROJECT_SEARCH_PATH = "/rest/api/3/project/search";
     private static final String MYSELF_PATH = "/rest/api/3/myself";
 
-    private final WebClient webClient;
+    private final WebClient.Builder webClientBuilder;
+    private final String cloudId;
+    private final String apiBaseUrl;
     private final String defaultJql;
-    private final Integer pageSize;
+    private final int pageSize;
 
     public JiraClient(
-            @Value("${jira.base-url}") String baseUrl,
-            @Value("${jira.email}") String email,
-            @Value("${jira.api-token}") String apiToken,
+            @Value("${ATLASSIAN_CLOUD_ID}") String cloudId,
             @Value("${jira.jql:ORDER BY updated DESC}") String defaultJql,
-            @Value("${jira.page-size:200}") Integer pageSize
+            @Value("${jira.page-size:50}") Integer pageSize
     ) {
-        String basic = Base64.getEncoder()
-                .encodeToString((email + ":" + apiToken).getBytes(StandardCharsets.UTF_8));
+        this.cloudId = cloudId;
+        this.apiBaseUrl = "https://api.atlassian.com/ex/jira/" + cloudId;
+        this.defaultJql = defaultJql;
+        this.pageSize = (pageSize != null ? pageSize : 50);
 
-        this.webClient = WebClient.builder()
-                .baseUrl(baseUrl)
-                .defaultHeader(HttpHeaders.AUTHORIZATION, "Basic " + basic)
+        this.webClientBuilder = WebClient.builder()
+                .baseUrl(apiBaseUrl)
+                .defaultHeader(HttpHeaders.ACCEPT, MediaType.APPLICATION_JSON_VALUE)
                 .defaultHeader(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON_VALUE)
                 .exchangeStrategies(ExchangeStrategies.builder()
                         .codecs(c -> c.defaultCodecs().maxInMemorySize(16 * 1024 * 1024))
                         .build())
-                // ✅ LOG de toda requisição (método + URL final)
                 .filter(ExchangeFilterFunction.ofRequestProcessor(req -> {
                     System.out.println(">> " + req.method() + " " + req.url());
-                    return reactor.core.publisher.Mono.just(req);
+                    return Mono.just(req);
                 }))
-                .build();
-
-        this.defaultJql = defaultJql;
-        this.pageSize = pageSize;
+                .filter(ExchangeFilterFunction.ofResponseProcessor(resp -> {
+                    System.out.println("<< " + resp.statusCode());
+                    return Mono.just(resp);
+                }));
     }
 
-    public String pingMe() {
-        return webClient.get()
+    /**
+     * Cria um WebClient com o access token atual do usuário.
+     */
+    private WebClient webClientWithToken(String accessToken) {
+        return webClientBuilder
+                .clone()
+                .defaultHeader(HttpHeaders.AUTHORIZATION, "Bearer " + accessToken)
+                .build();
+    }
+
+    /** ✅ Testa autenticação usando /myself */
+    public String pingMe(String accessToken) {
+        return webClientWithToken(accessToken).get()
                 .uri(MYSELF_PATH)
                 .retrieve()
                 .bodyToMono(String.class)
-                .onErrorReturn("erro ao chamar /myself")
+                .onErrorResume(ex -> Mono.just("erro ao chamar /myself: " + ex.getMessage()))
                 .block();
     }
 
-    public String listProjectsRaw() {
-        return webClient.get()
+    /** ✅ Lista projetos (usando OAuth) */
+    public String listProjectsRaw(String accessToken) {
+        return webClientWithToken(accessToken).get()
                 .uri(PROJECT_SEARCH_PATH)
                 .retrieve()
                 .bodyToMono(String.class)
                 .block();
     }
 
-    /** RAW do /search/jql (para diagnosticar facilmente) */
-    public String searchPageRaw(String nextPageToken) {
-        JiraSearchJqlRequest req = new JiraSearchJqlRequest(
-                defaultJql,
-                pageSize != null ? pageSize : 200,
-                List.of("summary","status","assignee","updated"),
-                nextPageToken
-        );
+    /** ✅ Busca issues (RAW) — com JQL e paginação */
+    public String searchPageRaw(String accessToken, String nextPageToken) {
+        try {
+            int startAt = 0;
+            if (nextPageToken != null && !nextPageToken.isBlank()) {
+                try {
+                    startAt = Integer.parseInt(nextPageToken);
+                } catch (NumberFormatException ignored) {}
+            }
 
-        return webClient.post()
-                .uri(SEARCH_JQL_PATH) // ✅ garantido
-                .bodyValue(req)
-                .retrieve()
-                .bodyToMono(String.class)
-                .block();
+            Map<String, Object> body = new HashMap<>();
+            body.put("jql", defaultJql);
+            body.put("startAt", startAt);
+            body.put("maxResults", pageSize);
+            body.put("fields", List.of("summary", "status", "assignee", "updated", "created", "project", "issuetype"));
+
+            System.out.println("📤 Corpo enviado ao Jira Cloud (OAuth): " + body);
+
+            String response = webClientWithToken(accessToken).post()
+                    .uri(SEARCH_JQL_PATH)
+                    .bodyValue(body)
+                    .retrieve()
+                    .onStatus(status -> status.value() >= 400, resp -> {
+                        System.err.println("❌ Jira retornou erro HTTP: " + resp.statusCode());
+                        return resp.bodyToMono(String.class)
+                                .flatMap(msg -> Mono.error(new RuntimeException("Erro Jira: " + msg)));
+                    })
+                    .bodyToMono(String.class)
+                    .block();
+
+            System.out.println("📦 Jira response (raw): " + response);
+            return response;
+
+        } catch (Exception e) {
+            System.err.println("❌ Erro ao buscar issues no Jira: " + e.getMessage());
+            e.printStackTrace();
+            return "{\"error\": \"" + e.getMessage() + "\"}";
+        }
     }
 
-    /** Lista resumida para o front */
-    public List<IssueSummary> fetchAllAsSummaries() {
-        String token = null;
+    /** ✅ Busca resumida com paginação */
+    public List<IssueSummary> fetchAllAsSummaries(String accessToken) {
+        int startAt = 0;
         boolean last = false;
         List<IssueSummary> out = new ArrayList<>();
 
         do {
-            JiraSearchJqlRequest req = new JiraSearchJqlRequest(
-                    defaultJql,
-                    pageSize != null ? pageSize : 200,
-                    List.of("summary","status","assignee","updated"),
-                    token
-            );
+            Map<String, Object> body = new HashMap<>();
+            body.put("jql", defaultJql);
+            body.put("startAt", startAt);
+            body.put("maxResults", pageSize);
+            body.put("fields", List.of("summary", "status", "assignee", "updated", "created", "project", "issuetype"));
 
-            JiraSearchJqlResponse resp = webClient.post()
-                    .uri(SEARCH_JQL_PATH) // ✅ garantido
-                    .bodyValue(req)
+            JiraSearchJqlResponse resp = webClientWithToken(accessToken).post()
+                    .uri(SEARCH_JQL_PATH)
+                    .bodyValue(body)
                     .retrieve()
                     .bodyToMono(JiraSearchJqlResponse.class)
                     .block();
@@ -126,9 +155,10 @@ public class JiraClient {
                 });
             }
 
-            token = (resp != null) ? resp.nextPageToken() : null;
-            last  = (resp != null && Boolean.TRUE.equals(resp.isLast()));
-        } while (!last && token != null && !token.isBlank());
+            startAt += pageSize;
+            last = (resp == null || resp.issues() == null || resp.issues().isEmpty());
+
+        } while (!last);
 
         return out;
     }

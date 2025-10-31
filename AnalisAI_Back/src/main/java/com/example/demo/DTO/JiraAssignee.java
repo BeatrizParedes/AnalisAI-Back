@@ -1,10 +1,7 @@
+// src/main/java/com/example/demo/DTO/JiraAssignee.java
 package com.example.demo.DTO;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
-public record JiraIssue(
-        String id,
-        String key,
-        JiraIssueFields fields
-) {}
+public record JiraAssignee(String displayName) {}
