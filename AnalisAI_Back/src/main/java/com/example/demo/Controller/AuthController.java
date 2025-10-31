@@ -1,7 +1,7 @@
-package com.example.demo.controller;
+package com.example.demo.Controller;
 
 import com.example.demo.DTO.TokenResponse;
-import com.example.demo.service.AuthService;
+import com.example.demo.Service.AuthService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;

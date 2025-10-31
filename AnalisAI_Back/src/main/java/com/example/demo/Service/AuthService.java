@@ -1,4 +1,4 @@
-package com.example.demo.service;
+package com.example.demo.Service;
 
 import com.example.demo.DTO.TokenResponse;
 import org.slf4j.Logger;

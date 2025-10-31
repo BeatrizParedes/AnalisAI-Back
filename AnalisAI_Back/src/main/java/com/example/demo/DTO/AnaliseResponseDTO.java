@@ -1,6 +1,6 @@
 package com.example.demo.DTO;
 
-import com.example.demo.model.Analise;
+import com.example.demo.Model.Analise;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
