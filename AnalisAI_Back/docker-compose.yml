@@ -1,7 +1,7 @@
 services:
   mariadb:
     image: mariadb:11.4
-    container_name: mariadb
+    containgit er_name: mariadb
     restart: unless-stopped
     environment:
       MARIADB_ROOT_PASSWORD: ${MARIADB_ROOT_PASSWORD}
@@ -9,7 +9,7 @@ services:
       MARIADB_USER: ${MARIADB_USER}
       MARIADB_PASSWORD: ${MARIADB_PASSWORD}
     ports:
-      - "0.0.0.0:3310:3306"   
+      - "0.0.0.0:3310:3306"
     volumes:
       - ./data:/var/lib/mysql
     healthcheck:

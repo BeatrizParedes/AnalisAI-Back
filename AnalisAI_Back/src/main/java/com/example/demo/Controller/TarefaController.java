@@ -1,7 +1,7 @@
-package com.example.demo.controller;
+package com.example.demo.Controller;
 
-import com.example.demo.model.Tarefa;
-import com.example.demo.service.TarefaService;
+import com.example.demo.Model.Tarefa;
+import com.example.demo.Service.TarefaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 

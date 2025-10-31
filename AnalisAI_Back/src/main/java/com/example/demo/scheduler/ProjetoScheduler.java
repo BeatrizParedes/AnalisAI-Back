@@ -1,7 +1,7 @@
 package com.example.demo.scheduler;
 
-import com.example.demo.model.Projeto;
-import com.example.demo.service.ProjetoService;
+import com.example.demo.Model.Projeto;
+import com.example.demo.Service.ProjetoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
