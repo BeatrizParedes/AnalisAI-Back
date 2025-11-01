@@ -12,4 +12,5 @@ public class IssueSummary {
     private String status;         // ex.: "To Do", "In Progress", "Done"
     private String assignee;       // ex.: "Fulano"
     private String updated;        // ISO string do updated
+    private String duedate;        // ⬅️ CAMPO ADICIONADO
 }
