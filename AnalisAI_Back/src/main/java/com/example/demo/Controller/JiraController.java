@@ -1,7 +1,7 @@
 package com.example.demo.Controller;
 
 import com.example.demo.DTO.IssueSummary;
-import com.example.demo.service.JiraClient;
+import com.example.demo.Service.JiraClient;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -20,18 +20,19 @@ public class JiraController {
     }
 
     /**
-     * ✅ Testa conexão e autenticação com Jira Cloud.
+     * Testa conexão e autenticação com Jira Cloud.
      * Requer cabeçalho Authorization: Bearer <access_token>
      */
     @GetMapping("/ping")
     public ResponseEntity<String> ping(@RequestHeader("Authorization") String authorization) {
         String accessToken = extractToken(authorization);
+        // Agora o jira.pingMe(accessToken) existe (veja o próximo ficheiro)
         String result = jira.pingMe(accessToken);
         return ResponseEntity.ok(result);
     }
 
     /**
-     * ✅ Lista projetos (bruto).
+     * Lista projetos (bruto).
      * Requer cabeçalho Authorization: Bearer <access_token>
      */
     @GetMapping("/projects/raw")
@@ -42,17 +43,18 @@ public class JiraController {
     }
 
     /**
-     * ✅ Lista resumida de issues (todas as páginas).
+     * Lista resumida de issues (sem paginação explícita) —
      * Requer cabeçalho Authorization: Bearer <access_token>
      */
     @GetMapping("/issues")
-    public List<IssueSummary> list(@RequestHeader("Authorization") String authorization) {
+    public ResponseEntity<List<IssueSummary>> listSummaries(@RequestHeader("Authorization") String authorization) {
         String accessToken = extractToken(authorization);
-        return jira.fetchAllAsSummaries(accessToken);
+        List<IssueSummary> summaries = jira.fetchAllAsSummaries(accessToken);
+        return ResponseEntity.ok(summaries);
     }
 
     /**
-     * ✅ Busca RAW de issues (POST)
+     * Busca RAW de issues paginadas — endpoint POST.
      * Body opcional: { "nextPageToken": "50" }
      * Requer cabeçalho Authorization: Bearer <access_token>
      */
@@ -62,19 +64,20 @@ public class JiraController {
             @RequestBody(required = false) Map<String, String> body
     ) {
         String accessToken = extractToken(authorization);
-        String nextPageToken = (body != null) ? body.get("nextPageToken") : null;
+        String nextPageToken = (body != null ? body.get("nextPageToken") : null);
         String result = jira.searchPageRaw(accessToken, nextPageToken);
         return ResponseEntity.ok(result);
     }
 
     /**
-     * 🔒 Extrai o token do header Authorization.
+     * Extrai o token do header Authorization.
      * Exemplo: "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9..."
      */
     private String extractToken(String authorizationHeader) {
         if (authorizationHeader == null || !authorizationHeader.startsWith("Bearer ")) {
-            throw new IllegalArgumentException("Cabeçalho Authorization inválido ou ausente");
+            throw new IllegalArgumentException("Cabeçalho Authorization inválido ou ausente. Deve ser 'Bearer <token>'");
         }
         return authorizationHeader.substring(7);
     }
 }
+

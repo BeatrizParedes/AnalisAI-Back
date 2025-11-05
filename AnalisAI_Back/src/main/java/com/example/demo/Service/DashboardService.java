@@ -27,11 +27,15 @@ public class DashboardService {
 
     /**
      * Calcula as estatísticas de progresso do projeto com base no JQL padrão.
+     * AGORA RECEBE O ACCESS TOKEN PARA PASSAR AO JIRA CLIENT.
+     *
+     * @param accessToken O token de autenticação OAuth 2.0 (Bearer).
      * @return DTO com todas as métricas para o frontend.
      */
-    public DashboardStatsDTO getProjectStats() {
+    public DashboardStatsDTO getProjectStats(String accessToken) {
         // 1. Busca todos os resumos de issues do Jira
-        List<IssueSummary> allIssues = jiraClient.fetchAllAsSummaries();
+        // ⬇️ CORREÇÃO AQUI: Passa o accessToken
+        List<IssueSummary> allIssues = jiraClient.fetchAllAsSummaries(accessToken);
 
         DashboardStatsDTO stats = new DashboardStatsDTO();
 
@@ -49,7 +53,7 @@ public class DashboardService {
         Map<String, Long> tasksByStatus = allIssues.stream()
                 .collect(Collectors.groupingBy(
                         // Garante que status nulos não quebrem o agrupamento
-                        issue -> issue.getStatus() != null ? issue.getStatus() : "Sem Status",
+                        issue -> (issue.getStatus() != null && !issue.getStatus().isBlank()) ? issue.getStatus() : "Sem Status",
                         Collectors.counting()
                 ));
         stats.setTasksByStatus(tasksByStatus);
@@ -73,7 +77,7 @@ public class DashboardService {
                     LocalDate dueDate = LocalDate.parse(issue.getDuedate());
                     isOverdue = dueDate.isBefore(today);
                 } catch (Exception e) {
-                    log.error("Erro ao parsear duedate: {}", issue.getDuedate(), e);
+                    log.error("Erro ao parsear duedate: {} (Key: {})", issue.getDuedate(), issue.getKey(), e);
                     // Ignora erro de parsing, não conta como atrasada
                 }
             }
@@ -94,3 +98,4 @@ public class DashboardService {
         return stats;
     }
 }
+

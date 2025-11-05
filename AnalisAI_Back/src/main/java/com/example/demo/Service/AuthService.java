@@ -1,21 +1,19 @@
-/*
- * package com.example.demo.Service;
- *
- * import com.example.demo.DTO.TokenResponse;
- * import org.slf4j.Logger;
- * import org.slf4j.LoggerFactory;
- * import org.springframework.beans.factory.annotation.Value;
- * import org.springframework.core.ParameterizedTypeReference;
- * import org.springframework.http.HttpHeaders;
- * import org.springframework.http.MediaType;
- * import org.springframework.stereotype.Service;
- * import org.springframework.web.reactive.function.client.WebClient;
- * import org.springframework.web.util.UriComponentsBuilder;
- * import reactor.core.publisher.Mono;
- *
- * import java.time.Instant;
- * import java.util.*;
- */
+package com.example.demo.Service;
+
+import com.example.demo.DTO.TokenResponse;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.core.ParameterizedTypeReference;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.MediaType;
+import org.springframework.stereotype.Service;
+import org.springframework.web.reactive.function.client.WebClient;
+import org.springframework.web.util.UriComponentsBuilder;
+import reactor.core.publisher.Mono;
+
+import java.time.Instant;
+import java.util.*;
 
 /**
  * Serviço responsável por gerenciar todo o fluxo de autenticação e autorização
@@ -27,7 +25,6 @@
  * 3. Atualização (refresh) de um "access token" expirado.
  * 4. Busca dos recursos acessíveis (sites Jira/Confluence) para um token.
  */
-/*
 @Service
 public class AuthService {
 
@@ -45,18 +42,17 @@ public class AuthService {
     private final String clientSecret;
     private final String redirectUri;
     private final String scope;
-*/
-/**
- * Construtor para injeção de dependências.
- * Inicializa o WebClient e armazena as configurações de OAuth do Atlassian
- * injetadas a partir das propriedades da aplicação.
- *
- * @param clientId     O Client ID da sua aplicação OAuth no Atlassian Developer Console.
- * @param clientSecret O Client Secret da sua aplicação OAuth.
- * @param redirectUri  A URL de callback para onde o Atlassian deve redirecionar o usuário após a autorização.
- * @param scope        Os escopos de permissão que sua aplicação está solicitando.
- */
-/*
+
+    /**
+     * Construtor para injeção de dependências.
+     * Inicializa o WebClient e armazena as configurações de OAuth do Atlassian
+     * injetadas a partir das propriedades da aplicação.
+     *
+     * @param clientId     O Client ID da sua aplicação OAuth no Atlassian Developer Console.
+     * @param clientSecret O Client Secret da sua aplicação OAuth.
+     * @param redirectUri  A URL de callback para onde o Atlassian deve redirecionar o usuário após a autorização.
+     * @param scope        Os escopos de permissão que sua aplicação está solicitando.
+     */
     public AuthService(
             @Value("${atlassian.client-id}") String clientId,
             @Value("${atlassian.client-secret}") String clientSecret,
@@ -73,18 +69,17 @@ public class AuthService {
                 .defaultHeader(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON_VALUE)
                 .build();
     }
-*/
-/**
- * 🔹 Gera a URL de autorização (login Atlassian)
- * Monta a URL para a qual o usuário deve ser redirecionado para iniciar o
- * processo de login e concessão de permissão (consentimento) à aplicação.
- *
- * @param clientId     O Client ID da aplicação.
- * @param redirectUri  A URL de callback para onde o usuário será enviado após o login.
- * @param scope        Os escopos de permissão solicitados.
- * @return Uma String contendo a URL de autorização completa.
- */
-/*
+
+    /**
+     * 🔹 Gera a URL de autorização (login Atlassian)
+     * Monta a URL para a qual o usuário deve ser redirecionado para iniciar o
+     * processo de login e concessão de permissão (consentimento) à aplicação.
+     *
+     * @param clientId     O Client ID da aplicação.
+     * @param redirectUri  A URL de callback para onde o usuário será enviado após o login.
+     * @param scope        Os escopos de permissão solicitados.
+     * @return Uma String contendo a URL de autorização completa.
+     */
     public String buildAuthorizationUrl(String clientId, String redirectUri, String scope) {
         // O 'state' é um valor aleatório usado para prevenir ataques CSRF.
         // Ele é enviado na requisição e deve ser validado no callback.
@@ -106,17 +101,16 @@ public class AuthService {
                 .build()
                 .toUriString();
     }
-*/
-/**
- * 🔹 Troca o authorization code recebido por um access token + refresh token
- * Este método é chamado após o usuário ser redirecionado de volta para a aplicação
- * (no 'redirectUri') com um 'code' na URL.
- *
- * @param code O 'authorization_code' recebido como parâmetro na URL de callback.
- * @return Um objeto {@link TokenResponse} contendo o access token, refresh token e data de expiração.
- * @throws RuntimeException Se a chamada à API do Atlassian falhar.
- */
-/*
+
+    /**
+     * 🔹 Troca o authorization code recebido por um access token + refresh token
+     * Este método é chamado após o usuário ser redirecionado de volta para a aplicação
+     * (no 'redirectUri') com um 'code' na URL.
+     *
+     * @param code O 'authorization_code' recebido como parâmetro na URL de callback.
+     * @return Um objeto {@link TokenResponse} contendo o access token, refresh token e data de expiração.
+     * @throws RuntimeException Se a chamada à API do Atlassian falhar.
+     */
     public TokenResponse exchangeCodeForToken(String code) {
         log.info("Trocando authorization code por token...");
 
@@ -149,18 +143,17 @@ public class AuthService {
         // Converte o Map de resposta para o DTO TokenResponse
         return toTokenResponse(resp);
     }
-*/
-/**
- * 🔹 Atualiza o access token usando o refresh token
- * Quando o 'access_token' expira, este método usa o 'refresh_token'
- * (que tem vida longa) para obter um *novo* 'access_token' sem que o usuário
- * precise fazer login novamente.
- *
- * @param refreshToken O 'refresh_token' obtido durante a troca de código.
- * @return Um novo objeto {@link TokenResponse} com o novo access token.
- * @throws RuntimeException Se a chamada à API do Atlassian falhar.
- */
-/*
+
+    /**
+     * 🔹 Atualiza o access token usando o refresh token
+     * Quando o 'access_token' expira, este método usa o 'refresh_token'
+     * (que tem vida longa) para obter um *novo* 'access_token' sem que o usuário
+     * precise fazer login novamente.
+     *
+     * @param refreshToken O 'refresh_token' obtido durante a troca de código.
+     * @return Um novo objeto {@link TokenResponse} com o novo access token.
+     * @throws RuntimeException Se a chamada à API do Atlassian falhar.
+     */
     public TokenResponse refreshAccessToken(String refreshToken) {
         log.info("Atualizando access token via refresh token...");
 
@@ -187,19 +180,18 @@ public class AuthService {
 
         return toTokenResponse(resp);
     }
-*/
-/**
- * 🔹 Retorna os recursos Jira acessíveis para o token (útil pra obter o cloudId)
- * Após obter um 'access_token', este método busca a lista de "sites"
- * (instâncias do Jira, Confluence, etc.) aos quais o usuário deu permissão.
- * O 'cloudId' de um desses recursos é necessário para fazer chamadas
- * à API específica do Jira.
- *
- * @param accessToken O 'access_token' válido.
- * @return Uma Lista de Maps, onde cada Map representa um recurso acessível (contendo 'id', 'url', 'name', 'scopes').
- * @throws RuntimeException Se a chamada à API do Atlassian falhar.
- */
-/*
+
+    /**
+     * 🔹 Retorna os recursos Jira acessíveis para o token (útil pra obter o cloudId)
+     * Após obter um 'access_token', este método busca a lista de "sites"
+     * (instâncias do Jira, Confluence, etc.) aos quais o usuário deu permissão.
+     * O 'cloudId' de um desses recursos é necessário para fazer chamadas
+     * à API específica do Jira.
+     *
+     * @param accessToken O 'access_token' válido.
+     * @return Uma Lista de Maps, onde cada Map representa um recurso acessível (contendo 'id', 'url', 'name', 'scopes').
+     * @throws RuntimeException Se a chamada à API do Atlassian falhar.
+     */
     public List<Map<String, Object>> getAccessibleResources(String accessToken) {
         log.info("Buscando accessible-resources com token atual...");
 
@@ -218,17 +210,16 @@ public class AuthService {
                 .bodyToMono(new ParameterizedTypeReference<List<Map<String, Object>>>() {})
                 .block();
     }
-*/
-/**
- * 🔹 Converte o body da resposta em um TokenResponse DTO
- * Método utilitário privado para transformar a resposta genérica (Map) da API
- * de token em um objeto DTO (Data Transfer Object) tipado.
- *
- * @param resp O Map<String, Object> deserializado da resposta JSON da API.
- * @return Um objeto {@link TokenResponse} preenchido.
- * @throws RuntimeException Se a resposta da API for nula.
- */
-/*
+
+    /**
+     * 🔹 Converte o body da resposta em um TokenResponse DTO
+     * Método utilitário privado para transformar a resposta genérica (Map) da API
+     * de token em um objeto DTO (Data Transfer Object) tipado.
+     *
+     * @param resp O Map<String, Object> deserializado da resposta JSON da API.
+     * @return Um objeto {@link TokenResponse} preenchido.
+     * @throws RuntimeException Se a resposta da API for nula.
+     */
     private TokenResponse toTokenResponse(Map<String, Object> resp) {
         if (resp == null) {
             throw new RuntimeException("Resposta nula ao obter token");
@@ -246,38 +237,20 @@ public class AuthService {
         // Calcula o momento exato em que o token irá expirar
         Instant expiresAt = (expiresIn != null) ? Instant.now().plusSeconds(expiresIn) : null;
 
-        // Assumindo que você tenha um DTO TokenResponse (não fornecido no snippet)
-        // que aceite esses parâmetros.
-        // return new TokenResponse(accessToken, refreshToken, tokenType, expiresIn, expiresAt, scopeResp);
-
-        // Retorno fictício para compilar, já que TokenResponse não foi fornecido:
-        // (No seu código real, a linha acima deve funcionar)
         log.info("Token processado com sucesso. AccessToken: ...{}", (accessToken != null ? accessToken.substring(Math.max(0, accessToken.length() - 6)) : "null"));
-        // Simula o retorno, substitua pela sua classe DTO
+
+        // Cria a instância do DTO TokenResponse
         return new TokenResponse(accessToken, refreshToken, tokenType, expiresIn, expiresAt, scopeResp);
     }
-*/
-/**
- * Utilitário simples para converter um Objeto em String de forma segura
- * (evitando NullPointerException).
- *
- * @param o O objeto a ser convertido.
- * @return A representação em String do objeto, ou null se o objeto for nulo.
- */
-/*
+
+    /**
+     * Utilitário simples para converter um Objeto em String de forma segura
+     * (evitando NullPointerException).
+     *
+     * @param o O objeto a ser convertido.
+     * @return A representação em String do objeto, ou null se o objeto for nulo.
+     */
     private String asString(Object o) {
         return o == null ? null : String.valueOf(o);
     }
-*/
-/*
- * Definição fictícia do DTO TokenResponse, apenas para o código compilar.
- * Use a sua definição real.
- */
-    /*
-    private static class TokenResponse {
-        public TokenResponse(String accessToken, String refreshToken, String tokenType, Integer expiresIn, Instant expiresAt, String scopeResp) {
-            // Construtor
-        }
-    }
-    */
-//}
+}

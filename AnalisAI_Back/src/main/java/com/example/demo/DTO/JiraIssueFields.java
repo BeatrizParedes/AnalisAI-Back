@@ -10,5 +10,6 @@ public record JiraIssueFields(
         String updated,
         String created,
         JiraProject project,
-        JiraIssueType issuetype
+        JiraIssueType issuetype,
+        String duedate // ⬅️ CAMPO ADICIONADO
 ) {}
