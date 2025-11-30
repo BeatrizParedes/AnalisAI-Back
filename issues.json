@@ -1,0 +1,1179 @@
+[
+    {
+        "expand":  "renderedFields,names,schema,operations,editmeta,changelog,versionedRepresentations",
+        "id":  "10053",
+        "self":  "https://cesar-team-tg0m2r5x.atlassian.net/rest/api/3/issue/10053",
+        "key":  "AP-21",
+        "fields":  {
+                       "summary":  "Novos colaboradores integrados por mês",
+                       "issuetype":  {
+                                         "self":  "https://cesar-team-tg0m2r5x.atlassian.net/rest/api/3/issuetype/10034",
+                                         "id":  "10034",
+                                         "description":  "Tasks track small, distinct pieces of work.",
+                                         "iconUrl":  "https://cesar-team-tg0m2r5x.atlassian.net/rest/api/2/universal_avatar/view/type/issuetype/avatar/10318?size=medium",
+                                         "name":  "Task",
+                                         "subtask":  false,
+                                         "avatarId":  10318,
+                                         "entityId":  "792f7ae7-91cc-40d0-b859-fd1339776f82",
+                                         "hierarchyLevel":  0
+                                     },
+                       "created":  "2025-10-24T11:21:43.226-0300",
+                       "project":  {
+                                       "self":  "https://cesar-team-tg0m2r5x.atlassian.net/rest/api/3/project/10033",
+                                       "id":  "10033",
+                                       "key":  "AP",
+                                       "name":  "AnalisAI - projeto",
+                                       "projectTypeKey":  "software",
+                                       "simplified":  true,
+                                       "avatarUrls":  {
+                                                          "48x48":  "https://cesar-team-tg0m2r5x.atlassian.net/rest/api/3/universal_avatar/view/type/project/avatar/10412",
+                                                          "24x24":  "https://cesar-team-tg0m2r5x.atlassian.net/rest/api/3/universal_avatar/view/type/project/avatar/10412?size=small",
+                                                          "16x16":  "https://cesar-team-tg0m2r5x.atlassian.net/rest/api/3/universal_avatar/view/type/project/avatar/10412?size=xsmall",
+                                                          "32x32":  "https://cesar-team-tg0m2r5x.atlassian.net/rest/api/3/universal_avatar/view/type/project/avatar/10412?size=medium"
+                                                      }
+                                   },
+                       "assignee":  {
+                                        "self":  "https://cesar-team-tg0m2r5x.atlassian.net/rest/api/3/user?accountId=712020%3A53cb122d-83ea-4685-8d43-59874bcef615",
+                                        "accountId":  "712020:53cb122d-83ea-4685-8d43-59874bcef615",
+                                        "avatarUrls":  {
+                                                           "48x48":  "https://secure.gravatar.com/avatar/471b5c7bf99d0d567fb4b152bd5e4c66?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FBN-6.png",
+                                                           "24x24":  "https://secure.gravatar.com/avatar/471b5c7bf99d0d567fb4b152bd5e4c66?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FBN-6.png",
+                                                           "16x16":  "https://secure.gravatar.com/avatar/471b5c7bf99d0d567fb4b152bd5e4c66?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FBN-6.png",
+                                                           "32x32":  "https://secure.gravatar.com/avatar/471b5c7bf99d0d567fb4b152bd5e4c66?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FBN-6.png"
+                                                       },
+                                        "displayName":  "BEATRIZ PAREDES DO NASCIMENTO",
+                                        "active":  true,
+                                        "timeZone":  "America/Sao_Paulo",
+                                        "accountType":  "atlassian"
+                                    },
+                       "updated":  "2025-10-24T11:32:20.842-0300",
+                       "status":  {
+                                      "self":  "https://cesar-team-tg0m2r5x.atlassian.net/rest/api/3/status/10033",
+                                      "description":  "",
+                                      "iconUrl":  "https://cesar-team-tg0m2r5x.atlassian.net/",
+                                      "name":  "To Do",
+                                      "id":  "10033",
+                                      "statusCategory":  {
+                                                             "self":  "https://cesar-team-tg0m2r5x.atlassian.net/rest/api/3/statuscategory/2",
+                                                             "id":  2,
+                                                             "key":  "new",
+                                                             "colorName":  "blue-gray",
+                                                             "name":  "To Do"
+                                                         }
+                                  }
+                   }
+    },
+    {
+        "expand":  "renderedFields,names,schema,operations,editmeta,changelog,versionedRepresentations",
+        "id":  "10052",
+        "self":  "https://cesar-team-tg0m2r5x.atlassian.net/rest/api/3/issue/10052",
+        "key":  "AP-20",
+        "fields":  {
+                       "summary":  "Tempo médio de contratação por vaga",
+                       "issuetype":  {
+                                         "self":  "https://cesar-team-tg0m2r5x.atlassian.net/rest/api/3/issuetype/10034",
+                                         "id":  "10034",
+                                         "description":  "Tasks track small, distinct pieces of work.",
+                                         "iconUrl":  "https://cesar-team-tg0m2r5x.atlassian.net/rest/api/2/universal_avatar/view/type/issuetype/avatar/10318?size=medium",
+                                         "name":  "Task",
+                                         "subtask":  false,
+                                         "avatarId":  10318,
+                                         "entityId":  "792f7ae7-91cc-40d0-b859-fd1339776f82",
+                                         "hierarchyLevel":  0
+                                     },
+                       "created":  "2025-10-24T11:21:38.965-0300",
+                       "project":  {
+                                       "self":  "https://cesar-team-tg0m2r5x.atlassian.net/rest/api/3/project/10033",
+                                       "id":  "10033",
+                                       "key":  "AP",
+                                       "name":  "AnalisAI - projeto",
+                                       "projectTypeKey":  "software",
+                                       "simplified":  true,
+                                       "avatarUrls":  {
+                                                          "48x48":  "https://cesar-team-tg0m2r5x.atlassian.net/rest/api/3/universal_avatar/view/type/project/avatar/10412",
+                                                          "24x24":  "https://cesar-team-tg0m2r5x.atlassian.net/rest/api/3/universal_avatar/view/type/project/avatar/10412?size=small",
+                                                          "16x16":  "https://cesar-team-tg0m2r5x.atlassian.net/rest/api/3/universal_avatar/view/type/project/avatar/10412?size=xsmall",
+                                                          "32x32":  "https://cesar-team-tg0m2r5x.atlassian.net/rest/api/3/universal_avatar/view/type/project/avatar/10412?size=medium"
+                                                      }
+                                   },
+                       "assignee":  {
+                                        "self":  "https://cesar-team-tg0m2r5x.atlassian.net/rest/api/3/user?accountId=712020%3Ae6183950-4537-4d5a-80ed-a70e386c33dc",
+                                        "accountId":  "712020:e6183950-4537-4d5a-80ed-a70e386c33dc",
+                                        "avatarUrls":  {
+                                                           "48x48":  "https://secure.gravatar.com/avatar/499c88526b7b1986401167831225a433?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FCS-0.png",
+                                                           "24x24":  "https://secure.gravatar.com/avatar/499c88526b7b1986401167831225a433?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FCS-0.png",
+                                                           "16x16":  "https://secure.gravatar.com/avatar/499c88526b7b1986401167831225a433?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FCS-0.png",
+                                                           "32x32":  "https://secure.gravatar.com/avatar/499c88526b7b1986401167831225a433?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FCS-0.png"
+                                                       },
+                                        "displayName":  "CECÍLIA MEDEIROS SOUZA",
+                                        "active":  true,
+                                        "timeZone":  "America/Sao_Paulo",
+                                        "accountType":  "atlassian"
+                                    },
+                       "updated":  "2025-10-24T11:32:18.505-0300",
+                       "status":  {
+                                      "self":  "https://cesar-team-tg0m2r5x.atlassian.net/rest/api/3/status/10033",
+                                      "description":  "",
+                                      "iconUrl":  "https://cesar-team-tg0m2r5x.atlassian.net/",
+                                      "name":  "To Do",
+                                      "id":  "10033",
+                                      "statusCategory":  {
+                                                             "self":  "https://cesar-team-tg0m2r5x.atlassian.net/rest/api/3/statuscategory/2",
+                                                             "id":  2,
+                                                             "key":  "new",
+                                                             "colorName":  "blue-gray",
+                                                             "name":  "To Do"
+                                                         }
+                                  }
+                   }
+    },
+    {
+        "expand":  "renderedFields,names,schema,operations,editmeta,changelog,versionedRepresentations",
+        "id":  "10051",
+        "self":  "https://cesar-team-tg0m2r5x.atlassian.net/rest/api/3/issue/10051",
+        "key":  "AP-19",
+        "fields":  {
+                       "summary":  "Vagas por status (em aberto, em andamento, concluídas)",
+                       "issuetype":  {
+                                         "self":  "https://cesar-team-tg0m2r5x.atlassian.net/rest/api/3/issuetype/10034",
+                                         "id":  "10034",
+                                         "description":  "Tasks track small, distinct pieces of work.",
+                                         "iconUrl":  "https://cesar-team-tg0m2r5x.atlassian.net/rest/api/2/universal_avatar/view/type/issuetype/avatar/10318?size=medium",
+                                         "name":  "Task",
+                                         "subtask":  false,
+                                         "avatarId":  10318,
+                                         "entityId":  "792f7ae7-91cc-40d0-b859-fd1339776f82",
+                                         "hierarchyLevel":  0
+                                     },
+                       "created":  "2025-10-24T11:21:33.711-0300",
+                       "project":  {
+                                       "self":  "https://cesar-team-tg0m2r5x.atlassian.net/rest/api/3/project/10033",
+                                       "id":  "10033",
+                                       "key":  "AP",
+                                       "name":  "AnalisAI - projeto",
+                                       "projectTypeKey":  "software",
+                                       "simplified":  true,
+                                       "avatarUrls":  {
+                                                          "48x48":  "https://cesar-team-tg0m2r5x.atlassian.net/rest/api/3/universal_avatar/view/type/project/avatar/10412",
+                                                          "24x24":  "https://cesar-team-tg0m2r5x.atlassian.net/rest/api/3/universal_avatar/view/type/project/avatar/10412?size=small",
+                                                          "16x16":  "https://cesar-team-tg0m2r5x.atlassian.net/rest/api/3/universal_avatar/view/type/project/avatar/10412?size=xsmall",
+                                                          "32x32":  "https://cesar-team-tg0m2r5x.atlassian.net/rest/api/3/universal_avatar/view/type/project/avatar/10412?size=medium"
+                                                      }
+                                   },
+                       "assignee":  {
+                                        "self":  "https://cesar-team-tg0m2r5x.atlassian.net/rest/api/3/user?accountId=712020%3A53cb122d-83ea-4685-8d43-59874bcef615",
+                                        "accountId":  "712020:53cb122d-83ea-4685-8d43-59874bcef615",
+                                        "avatarUrls":  {
+                                                           "48x48":  "https://secure.gravatar.com/avatar/471b5c7bf99d0d567fb4b152bd5e4c66?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FBN-6.png",
+                                                           "24x24":  "https://secure.gravatar.com/avatar/471b5c7bf99d0d567fb4b152bd5e4c66?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FBN-6.png",
+                                                           "16x16":  "https://secure.gravatar.com/avatar/471b5c7bf99d0d567fb4b152bd5e4c66?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FBN-6.png",
+                                                           "32x32":  "https://secure.gravatar.com/avatar/471b5c7bf99d0d567fb4b152bd5e4c66?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FBN-6.png"
+                                                       },
+                                        "displayName":  "BEATRIZ PAREDES DO NASCIMENTO",
+                                        "active":  true,
+                                        "timeZone":  "America/Sao_Paulo",
+                                        "accountType":  "atlassian"
+                                    },
+                       "updated":  "2025-10-24T11:32:16.667-0300",
+                       "status":  {
+                                      "self":  "https://cesar-team-tg0m2r5x.atlassian.net/rest/api/3/status/10033",
+                                      "description":  "",
+                                      "iconUrl":  "https://cesar-team-tg0m2r5x.atlassian.net/",
+                                      "name":  "To Do",
+                                      "id":  "10033",
+                                      "statusCategory":  {
+                                                             "self":  "https://cesar-team-tg0m2r5x.atlassian.net/rest/api/3/statuscategory/2",
+                                                             "id":  2,
+                                                             "key":  "new",
+                                                             "colorName":  "blue-gray",
+                                                             "name":  "To Do"
+                                                         }
+                                  }
+                   }
+    },
+    {
+        "expand":  "renderedFields,names,schema,operations,editmeta,changelog,versionedRepresentations",
+        "id":  "10050",
+        "self":  "https://cesar-team-tg0m2r5x.atlassian.net/rest/api/3/issue/10050",
+        "key":  "AP-18",
+        "fields":  {
+                       "summary":  "Atualizar status de efetivação",
+                       "issuetype":  {
+                                         "self":  "https://cesar-team-tg0m2r5x.atlassian.net/rest/api/3/issuetype/10034",
+                                         "id":  "10034",
+                                         "description":  "Tasks track small, distinct pieces of work.",
+                                         "iconUrl":  "https://cesar-team-tg0m2r5x.atlassian.net/rest/api/2/universal_avatar/view/type/issuetype/avatar/10318?size=medium",
+                                         "name":  "Task",
+                                         "subtask":  false,
+                                         "avatarId":  10318,
+                                         "entityId":  "792f7ae7-91cc-40d0-b859-fd1339776f82",
+                                         "hierarchyLevel":  0
+                                     },
+                       "created":  "2025-10-24T11:21:09.364-0300",
+                       "project":  {
+                                       "self":  "https://cesar-team-tg0m2r5x.atlassian.net/rest/api/3/project/10033",
+                                       "id":  "10033",
+                                       "key":  "AP",
+                                       "name":  "AnalisAI - projeto",
+                                       "projectTypeKey":  "software",
+                                       "simplified":  true,
+                                       "avatarUrls":  {
+                                                          "48x48":  "https://cesar-team-tg0m2r5x.atlassian.net/rest/api/3/universal_avatar/view/type/project/avatar/10412",
+                                                          "24x24":  "https://cesar-team-tg0m2r5x.atlassian.net/rest/api/3/universal_avatar/view/type/project/avatar/10412?size=small",
+                                                          "16x16":  "https://cesar-team-tg0m2r5x.atlassian.net/rest/api/3/universal_avatar/view/type/project/avatar/10412?size=xsmall",
+                                                          "32x32":  "https://cesar-team-tg0m2r5x.atlassian.net/rest/api/3/universal_avatar/view/type/project/avatar/10412?size=medium"
+                                                      }
+                                   },
+                       "assignee":  {
+                                        "self":  "https://cesar-team-tg0m2r5x.atlassian.net/rest/api/3/user?accountId=712020%3Ac547b6f3-0d07-4b75-8e0d-35698ae55ff2",
+                                        "accountId":  "712020:c547b6f3-0d07-4b75-8e0d-35698ae55ff2",
+                                        "avatarUrls":  {
+                                                           "48x48":  "https://secure.gravatar.com/avatar/3f92299cb39ae335bee4b92efa9909a6?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FMP-0.png",
+                                                           "24x24":  "https://secure.gravatar.com/avatar/3f92299cb39ae335bee4b92efa9909a6?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FMP-0.png",
+                                                           "16x16":  "https://secure.gravatar.com/avatar/3f92299cb39ae335bee4b92efa9909a6?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FMP-0.png",
+                                                           "32x32":  "https://secure.gravatar.com/avatar/3f92299cb39ae335bee4b92efa9909a6?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FMP-0.png"
+                                                       },
+                                        "displayName":  "MELISSA VITÓRIA FILGUEIRAS PEREIRA",
+                                        "active":  true,
+                                        "timeZone":  "America/Sao_Paulo",
+                                        "accountType":  "atlassian"
+                                    },
+                       "updated":  "2025-10-24T11:32:13.409-0300",
+                       "status":  {
+                                      "self":  "https://cesar-team-tg0m2r5x.atlassian.net/rest/api/3/status/10033",
+                                      "description":  "",
+                                      "iconUrl":  "https://cesar-team-tg0m2r5x.atlassian.net/",
+                                      "name":  "To Do",
+                                      "id":  "10033",
+                                      "statusCategory":  {
+                                                             "self":  "https://cesar-team-tg0m2r5x.atlassian.net/rest/api/3/statuscategory/2",
+                                                             "id":  2,
+                                                             "key":  "new",
+                                                             "colorName":  "blue-gray",
+                                                             "name":  "To Do"
+                                                         }
+                                  }
+                   }
+    },
+    {
+        "expand":  "renderedFields,names,schema,operations,editmeta,changelog,versionedRepresentations",
+        "id":  "10049",
+        "self":  "https://cesar-team-tg0m2r5x.atlassian.net/rest/api/3/issue/10049",
+        "key":  "AP-17",
+        "fields":  {
+                       "summary":  "Reunião de avaliação com colaborador",
+                       "issuetype":  {
+                                         "self":  "https://cesar-team-tg0m2r5x.atlassian.net/rest/api/3/issuetype/10034",
+                                         "id":  "10034",
+                                         "description":  "Tasks track small, distinct pieces of work.",
+                                         "iconUrl":  "https://cesar-team-tg0m2r5x.atlassian.net/rest/api/2/universal_avatar/view/type/issuetype/avatar/10318?size=medium",
+                                         "name":  "Task",
+                                         "subtask":  false,
+                                         "avatarId":  10318,
+                                         "entityId":  "792f7ae7-91cc-40d0-b859-fd1339776f82",
+                                         "hierarchyLevel":  0
+                                     },
+                       "created":  "2025-10-24T11:21:03.112-0300",
+                       "project":  {
+                                       "self":  "https://cesar-team-tg0m2r5x.atlassian.net/rest/api/3/project/10033",
+                                       "id":  "10033",
+                                       "key":  "AP",
+                                       "name":  "AnalisAI - projeto",
+                                       "projectTypeKey":  "software",
+                                       "simplified":  true,
+                                       "avatarUrls":  {
+                                                          "48x48":  "https://cesar-team-tg0m2r5x.atlassian.net/rest/api/3/universal_avatar/view/type/project/avatar/10412",
+                                                          "24x24":  "https://cesar-team-tg0m2r5x.atlassian.net/rest/api/3/universal_avatar/view/type/project/avatar/10412?size=small",
+                                                          "16x16":  "https://cesar-team-tg0m2r5x.atlassian.net/rest/api/3/universal_avatar/view/type/project/avatar/10412?size=xsmall",
+                                                          "32x32":  "https://cesar-team-tg0m2r5x.atlassian.net/rest/api/3/universal_avatar/view/type/project/avatar/10412?size=medium"
+                                                      }
+                                   },
+                       "assignee":  {
+                                        "self":  "https://cesar-team-tg0m2r5x.atlassian.net/rest/api/3/user?accountId=712020%3A8d6f3a5c-4a41-441a-8c18-d95bf50d8b52",
+                                        "accountId":  "712020:8d6f3a5c-4a41-441a-8c18-d95bf50d8b52",
+                                        "avatarUrls":  {
+                                                           "48x48":  "https://secure.gravatar.com/avatar/504ebc9c4928c676aca891eb32bf2a2b?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FCX-1.png",
+                                                           "24x24":  "https://secure.gravatar.com/avatar/504ebc9c4928c676aca891eb32bf2a2b?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FCX-1.png",
+                                                           "16x16":  "https://secure.gravatar.com/avatar/504ebc9c4928c676aca891eb32bf2a2b?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FCX-1.png",
+                                                           "32x32":  "https://secure.gravatar.com/avatar/504ebc9c4928c676aca891eb32bf2a2b?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FCX-1.png"
+                                                       },
+                                        "displayName":  "CATARINA VIRGINIA LIMA LOUREIRO XAVIER",
+                                        "active":  true,
+                                        "timeZone":  "America/Sao_Paulo",
+                                        "accountType":  "atlassian"
+                                    },
+                       "updated":  "2025-10-24T11:32:09.833-0300",
+                       "status":  {
+                                      "self":  "https://cesar-team-tg0m2r5x.atlassian.net/rest/api/3/status/10033",
+                                      "description":  "",
+                                      "iconUrl":  "https://cesar-team-tg0m2r5x.atlassian.net/",
+                                      "name":  "To Do",
+                                      "id":  "10033",
+                                      "statusCategory":  {
+                                                             "self":  "https://cesar-team-tg0m2r5x.atlassian.net/rest/api/3/statuscategory/2",
+                                                             "id":  2,
+                                                             "key":  "new",
+                                                             "colorName":  "blue-gray",
+                                                             "name":  "To Do"
+                                                         }
+                                  }
+                   }
+    },
+    {
+        "expand":  "renderedFields,names,schema,operations,editmeta,changelog,versionedRepresentations",
+        "id":  "10048",
+        "self":  "https://cesar-team-tg0m2r5x.atlassian.net/rest/api/3/issue/10048",
+        "key":  "AP-16",
+        "fields":  {
+                       "summary":  "Coletar feedback dos gestores",
+                       "issuetype":  {
+                                         "self":  "https://cesar-team-tg0m2r5x.atlassian.net/rest/api/3/issuetype/10034",
+                                         "id":  "10034",
+                                         "description":  "Tasks track small, distinct pieces of work.",
+                                         "iconUrl":  "https://cesar-team-tg0m2r5x.atlassian.net/rest/api/2/universal_avatar/view/type/issuetype/avatar/10318?size=medium",
+                                         "name":  "Task",
+                                         "subtask":  false,
+                                         "avatarId":  10318,
+                                         "entityId":  "792f7ae7-91cc-40d0-b859-fd1339776f82",
+                                         "hierarchyLevel":  0
+                                     },
+                       "created":  "2025-10-24T11:20:58.903-0300",
+                       "project":  {
+                                       "self":  "https://cesar-team-tg0m2r5x.atlassian.net/rest/api/3/project/10033",
+                                       "id":  "10033",
+                                       "key":  "AP",
+                                       "name":  "AnalisAI - projeto",
+                                       "projectTypeKey":  "software",
+                                       "simplified":  true,
+                                       "avatarUrls":  {
+                                                          "48x48":  "https://cesar-team-tg0m2r5x.atlassian.net/rest/api/3/universal_avatar/view/type/project/avatar/10412",
+                                                          "24x24":  "https://cesar-team-tg0m2r5x.atlassian.net/rest/api/3/universal_avatar/view/type/project/avatar/10412?size=small",
+                                                          "16x16":  "https://cesar-team-tg0m2r5x.atlassian.net/rest/api/3/universal_avatar/view/type/project/avatar/10412?size=xsmall",
+                                                          "32x32":  "https://cesar-team-tg0m2r5x.atlassian.net/rest/api/3/universal_avatar/view/type/project/avatar/10412?size=medium"
+                                                      }
+                                   },
+                       "assignee":  {
+                                        "self":  "https://cesar-team-tg0m2r5x.atlassian.net/rest/api/3/user?accountId=712020%3A2c5d0894-08c5-4e27-8c0d-f09de72e54f3",
+                                        "accountId":  "712020:2c5d0894-08c5-4e27-8c0d-f09de72e54f3",
+                                        "avatarUrls":  {
+                                                           "48x48":  "https://secure.gravatar.com/avatar/142273a1f5519643aea7616b090b440a?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FIS-1.png",
+                                                           "24x24":  "https://secure.gravatar.com/avatar/142273a1f5519643aea7616b090b440a?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FIS-1.png",
+                                                           "16x16":  "https://secure.gravatar.com/avatar/142273a1f5519643aea7616b090b440a?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FIS-1.png",
+                                                           "32x32":  "https://secure.gravatar.com/avatar/142273a1f5519643aea7616b090b440a?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FIS-1.png"
+                                                       },
+                                        "displayName":  "ISABELLA LUCIANA BATISTA SILVA",
+                                        "active":  true,
+                                        "timeZone":  "America/Sao_Paulo",
+                                        "accountType":  "atlassian"
+                                    },
+                       "updated":  "2025-10-24T11:32:07.867-0300",
+                       "status":  {
+                                      "self":  "https://cesar-team-tg0m2r5x.atlassian.net/rest/api/3/status/10033",
+                                      "description":  "",
+                                      "iconUrl":  "https://cesar-team-tg0m2r5x.atlassian.net/",
+                                      "name":  "To Do",
+                                      "id":  "10033",
+                                      "statusCategory":  {
+                                                             "self":  "https://cesar-team-tg0m2r5x.atlassian.net/rest/api/3/statuscategory/2",
+                                                             "id":  2,
+                                                             "key":  "new",
+                                                             "colorName":  "blue-gray",
+                                                             "name":  "To Do"
+                                                         }
+                                  }
+                   }
+    },
+    {
+        "expand":  "renderedFields,names,schema,operations,editmeta,changelog,versionedRepresentations",
+        "id":  "10047",
+        "self":  "https://cesar-team-tg0m2r5x.atlassian.net/rest/api/3/issue/10047",
+        "key":  "AP-15",
+        "fields":  {
+                       "summary":  "Agendar treinamento inicial",
+                       "issuetype":  {
+                                         "self":  "https://cesar-team-tg0m2r5x.atlassian.net/rest/api/3/issuetype/10034",
+                                         "id":  "10034",
+                                         "description":  "Tasks track small, distinct pieces of work.",
+                                         "iconUrl":  "https://cesar-team-tg0m2r5x.atlassian.net/rest/api/2/universal_avatar/view/type/issuetype/avatar/10318?size=medium",
+                                         "name":  "Task",
+                                         "subtask":  false,
+                                         "avatarId":  10318,
+                                         "entityId":  "792f7ae7-91cc-40d0-b859-fd1339776f82",
+                                         "hierarchyLevel":  0
+                                     },
+                       "created":  "2025-10-24T11:20:16.229-0300",
+                       "project":  {
+                                       "self":  "https://cesar-team-tg0m2r5x.atlassian.net/rest/api/3/project/10033",
+                                       "id":  "10033",
+                                       "key":  "AP",
+                                       "name":  "AnalisAI - projeto",
+                                       "projectTypeKey":  "software",
+                                       "simplified":  true,
+                                       "avatarUrls":  {
+                                                          "48x48":  "https://cesar-team-tg0m2r5x.atlassian.net/rest/api/3/universal_avatar/view/type/project/avatar/10412",
+                                                          "24x24":  "https://cesar-team-tg0m2r5x.atlassian.net/rest/api/3/universal_avatar/view/type/project/avatar/10412?size=small",
+                                                          "16x16":  "https://cesar-team-tg0m2r5x.atlassian.net/rest/api/3/universal_avatar/view/type/project/avatar/10412?size=xsmall",
+                                                          "32x32":  "https://cesar-team-tg0m2r5x.atlassian.net/rest/api/3/universal_avatar/view/type/project/avatar/10412?size=medium"
+                                                      }
+                                   },
+                       "assignee":  {
+                                        "self":  "https://cesar-team-tg0m2r5x.atlassian.net/rest/api/3/user?accountId=712020%3A8d6f3a5c-4a41-441a-8c18-d95bf50d8b52",
+                                        "accountId":  "712020:8d6f3a5c-4a41-441a-8c18-d95bf50d8b52",
+                                        "avatarUrls":  {
+                                                           "48x48":  "https://secure.gravatar.com/avatar/504ebc9c4928c676aca891eb32bf2a2b?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FCX-1.png",
+                                                           "24x24":  "https://secure.gravatar.com/avatar/504ebc9c4928c676aca891eb32bf2a2b?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FCX-1.png",
+                                                           "16x16":  "https://secure.gravatar.com/avatar/504ebc9c4928c676aca891eb32bf2a2b?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FCX-1.png",
+                                                           "32x32":  "https://secure.gravatar.com/avatar/504ebc9c4928c676aca891eb32bf2a2b?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FCX-1.png"
+                                                       },
+                                        "displayName":  "CATARINA VIRGINIA LIMA LOUREIRO XAVIER",
+                                        "active":  true,
+                                        "timeZone":  "America/Sao_Paulo",
+                                        "accountType":  "atlassian"
+                                    },
+                       "updated":  "2025-10-24T11:32:03.798-0300",
+                       "status":  {
+                                      "self":  "https://cesar-team-tg0m2r5x.atlassian.net/rest/api/3/status/10033",
+                                      "description":  "",
+                                      "iconUrl":  "https://cesar-team-tg0m2r5x.atlassian.net/",
+                                      "name":  "To Do",
+                                      "id":  "10033",
+                                      "statusCategory":  {
+                                                             "self":  "https://cesar-team-tg0m2r5x.atlassian.net/rest/api/3/statuscategory/2",
+                                                             "id":  2,
+                                                             "key":  "new",
+                                                             "colorName":  "blue-gray",
+                                                             "name":  "To Do"
+                                                         }
+                                  }
+                   }
+    },
+    {
+        "expand":  "renderedFields,names,schema,operations,editmeta,changelog,versionedRepresentations",
+        "id":  "10046",
+        "self":  "https://cesar-team-tg0m2r5x.atlassian.net/rest/api/3/issue/10046",
+        "key":  "AP-14",
+        "fields":  {
+                       "summary":  "Montar kit de boas-vindas",
+                       "issuetype":  {
+                                         "self":  "https://cesar-team-tg0m2r5x.atlassian.net/rest/api/3/issuetype/10034",
+                                         "id":  "10034",
+                                         "description":  "Tasks track small, distinct pieces of work.",
+                                         "iconUrl":  "https://cesar-team-tg0m2r5x.atlassian.net/rest/api/2/universal_avatar/view/type/issuetype/avatar/10318?size=medium",
+                                         "name":  "Task",
+                                         "subtask":  false,
+                                         "avatarId":  10318,
+                                         "entityId":  "792f7ae7-91cc-40d0-b859-fd1339776f82",
+                                         "hierarchyLevel":  0
+                                     },
+                       "created":  "2025-10-24T11:20:11.614-0300",
+                       "project":  {
+                                       "self":  "https://cesar-team-tg0m2r5x.atlassian.net/rest/api/3/project/10033",
+                                       "id":  "10033",
+                                       "key":  "AP",
+                                       "name":  "AnalisAI - projeto",
+                                       "projectTypeKey":  "software",
+                                       "simplified":  true,
+                                       "avatarUrls":  {
+                                                          "48x48":  "https://cesar-team-tg0m2r5x.atlassian.net/rest/api/3/universal_avatar/view/type/project/avatar/10412",
+                                                          "24x24":  "https://cesar-team-tg0m2r5x.atlassian.net/rest/api/3/universal_avatar/view/type/project/avatar/10412?size=small",
+                                                          "16x16":  "https://cesar-team-tg0m2r5x.atlassian.net/rest/api/3/universal_avatar/view/type/project/avatar/10412?size=xsmall",
+                                                          "32x32":  "https://cesar-team-tg0m2r5x.atlassian.net/rest/api/3/universal_avatar/view/type/project/avatar/10412?size=medium"
+                                                      }
+                                   },
+                       "assignee":  {
+                                        "self":  "https://cesar-team-tg0m2r5x.atlassian.net/rest/api/3/user?accountId=712020%3Ac547b6f3-0d07-4b75-8e0d-35698ae55ff2",
+                                        "accountId":  "712020:c547b6f3-0d07-4b75-8e0d-35698ae55ff2",
+                                        "avatarUrls":  {
+                                                           "48x48":  "https://secure.gravatar.com/avatar/3f92299cb39ae335bee4b92efa9909a6?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FMP-0.png",
+                                                           "24x24":  "https://secure.gravatar.com/avatar/3f92299cb39ae335bee4b92efa9909a6?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FMP-0.png",
+                                                           "16x16":  "https://secure.gravatar.com/avatar/3f92299cb39ae335bee4b92efa9909a6?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FMP-0.png",
+                                                           "32x32":  "https://secure.gravatar.com/avatar/3f92299cb39ae335bee4b92efa9909a6?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FMP-0.png"
+                                                       },
+                                        "displayName":  "MELISSA VITÓRIA FILGUEIRAS PEREIRA",
+                                        "active":  true,
+                                        "timeZone":  "America/Sao_Paulo",
+                                        "accountType":  "atlassian"
+                                    },
+                       "updated":  "2025-10-24T11:32:02.051-0300",
+                       "status":  {
+                                      "self":  "https://cesar-team-tg0m2r5x.atlassian.net/rest/api/3/status/10033",
+                                      "description":  "",
+                                      "iconUrl":  "https://cesar-team-tg0m2r5x.atlassian.net/",
+                                      "name":  "To Do",
+                                      "id":  "10033",
+                                      "statusCategory":  {
+                                                             "self":  "https://cesar-team-tg0m2r5x.atlassian.net/rest/api/3/statuscategory/2",
+                                                             "id":  2,
+                                                             "key":  "new",
+                                                             "colorName":  "blue-gray",
+                                                             "name":  "To Do"
+                                                         }
+                                  }
+                   }
+    },
+    {
+        "expand":  "renderedFields,names,schema,operations,editmeta,changelog,versionedRepresentations",
+        "id":  "10045",
+        "self":  "https://cesar-team-tg0m2r5x.atlassian.net/rest/api/3/issue/10045",
+        "key":  "AP-13",
+        "fields":  {
+                       "summary":  "Criar acesso de e-mail corporativo",
+                       "issuetype":  {
+                                         "self":  "https://cesar-team-tg0m2r5x.atlassian.net/rest/api/3/issuetype/10034",
+                                         "id":  "10034",
+                                         "description":  "Tasks track small, distinct pieces of work.",
+                                         "iconUrl":  "https://cesar-team-tg0m2r5x.atlassian.net/rest/api/2/universal_avatar/view/type/issuetype/avatar/10318?size=medium",
+                                         "name":  "Task",
+                                         "subtask":  false,
+                                         "avatarId":  10318,
+                                         "entityId":  "792f7ae7-91cc-40d0-b859-fd1339776f82",
+                                         "hierarchyLevel":  0
+                                     },
+                       "created":  "2025-10-24T11:20:07.139-0300",
+                       "project":  {
+                                       "self":  "https://cesar-team-tg0m2r5x.atlassian.net/rest/api/3/project/10033",
+                                       "id":  "10033",
+                                       "key":  "AP",
+                                       "name":  "AnalisAI - projeto",
+                                       "projectTypeKey":  "software",
+                                       "simplified":  true,
+                                       "avatarUrls":  {
+                                                          "48x48":  "https://cesar-team-tg0m2r5x.atlassian.net/rest/api/3/universal_avatar/view/type/project/avatar/10412",
+                                                          "24x24":  "https://cesar-team-tg0m2r5x.atlassian.net/rest/api/3/universal_avatar/view/type/project/avatar/10412?size=small",
+                                                          "16x16":  "https://cesar-team-tg0m2r5x.atlassian.net/rest/api/3/universal_avatar/view/type/project/avatar/10412?size=xsmall",
+                                                          "32x32":  "https://cesar-team-tg0m2r5x.atlassian.net/rest/api/3/universal_avatar/view/type/project/avatar/10412?size=medium"
+                                                      }
+                                   },
+                       "assignee":  {
+                                        "self":  "https://cesar-team-tg0m2r5x.atlassian.net/rest/api/3/user?accountId=712020%3Ae6183950-4537-4d5a-80ed-a70e386c33dc",
+                                        "accountId":  "712020:e6183950-4537-4d5a-80ed-a70e386c33dc",
+                                        "avatarUrls":  {
+                                                           "48x48":  "https://secure.gravatar.com/avatar/499c88526b7b1986401167831225a433?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FCS-0.png",
+                                                           "24x24":  "https://secure.gravatar.com/avatar/499c88526b7b1986401167831225a433?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FCS-0.png",
+                                                           "16x16":  "https://secure.gravatar.com/avatar/499c88526b7b1986401167831225a433?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FCS-0.png",
+                                                           "32x32":  "https://secure.gravatar.com/avatar/499c88526b7b1986401167831225a433?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FCS-0.png"
+                                                       },
+                                        "displayName":  "CECÍLIA MEDEIROS SOUZA",
+                                        "active":  true,
+                                        "timeZone":  "America/Sao_Paulo",
+                                        "accountType":  "atlassian"
+                                    },
+                       "updated":  "2025-10-24T11:32:00.339-0300",
+                       "status":  {
+                                      "self":  "https://cesar-team-tg0m2r5x.atlassian.net/rest/api/3/status/10034",
+                                      "description":  "",
+                                      "iconUrl":  "https://cesar-team-tg0m2r5x.atlassian.net/",
+                                      "name":  "In Progress",
+                                      "id":  "10034",
+                                      "statusCategory":  {
+                                                             "self":  "https://cesar-team-tg0m2r5x.atlassian.net/rest/api/3/statuscategory/4",
+                                                             "id":  4,
+                                                             "key":  "indeterminate",
+                                                             "colorName":  "yellow",
+                                                             "name":  "In Progress"
+                                                         }
+                                  }
+                   }
+    },
+    {
+        "expand":  "renderedFields,names,schema,operations,editmeta,changelog,versionedRepresentations",
+        "id":  "10044",
+        "self":  "https://cesar-team-tg0m2r5x.atlassian.net/rest/api/3/issue/10044",
+        "key":  "AP-12",
+        "fields":  {
+                       "summary":  "Preparar documentação de admissão",
+                       "issuetype":  {
+                                         "self":  "https://cesar-team-tg0m2r5x.atlassian.net/rest/api/3/issuetype/10034",
+                                         "id":  "10034",
+                                         "description":  "Tasks track small, distinct pieces of work.",
+                                         "iconUrl":  "https://cesar-team-tg0m2r5x.atlassian.net/rest/api/2/universal_avatar/view/type/issuetype/avatar/10318?size=medium",
+                                         "name":  "Task",
+                                         "subtask":  false,
+                                         "avatarId":  10318,
+                                         "entityId":  "792f7ae7-91cc-40d0-b859-fd1339776f82",
+                                         "hierarchyLevel":  0
+                                     },
+                       "created":  "2025-10-24T11:20:01.399-0300",
+                       "project":  {
+                                       "self":  "https://cesar-team-tg0m2r5x.atlassian.net/rest/api/3/project/10033",
+                                       "id":  "10033",
+                                       "key":  "AP",
+                                       "name":  "AnalisAI - projeto",
+                                       "projectTypeKey":  "software",
+                                       "simplified":  true,
+                                       "avatarUrls":  {
+                                                          "48x48":  "https://cesar-team-tg0m2r5x.atlassian.net/rest/api/3/universal_avatar/view/type/project/avatar/10412",
+                                                          "24x24":  "https://cesar-team-tg0m2r5x.atlassian.net/rest/api/3/universal_avatar/view/type/project/avatar/10412?size=small",
+                                                          "16x16":  "https://cesar-team-tg0m2r5x.atlassian.net/rest/api/3/universal_avatar/view/type/project/avatar/10412?size=xsmall",
+                                                          "32x32":  "https://cesar-team-tg0m2r5x.atlassian.net/rest/api/3/universal_avatar/view/type/project/avatar/10412?size=medium"
+                                                      }
+                                   },
+                       "assignee":  {
+                                        "self":  "https://cesar-team-tg0m2r5x.atlassian.net/rest/api/3/user?accountId=712020%3A53cb122d-83ea-4685-8d43-59874bcef615",
+                                        "accountId":  "712020:53cb122d-83ea-4685-8d43-59874bcef615",
+                                        "avatarUrls":  {
+                                                           "48x48":  "https://secure.gravatar.com/avatar/471b5c7bf99d0d567fb4b152bd5e4c66?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FBN-6.png",
+                                                           "24x24":  "https://secure.gravatar.com/avatar/471b5c7bf99d0d567fb4b152bd5e4c66?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FBN-6.png",
+                                                           "16x16":  "https://secure.gravatar.com/avatar/471b5c7bf99d0d567fb4b152bd5e4c66?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FBN-6.png",
+                                                           "32x32":  "https://secure.gravatar.com/avatar/471b5c7bf99d0d567fb4b152bd5e4c66?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FBN-6.png"
+                                                       },
+                                        "displayName":  "BEATRIZ PAREDES DO NASCIMENTO",
+                                        "active":  true,
+                                        "timeZone":  "America/Sao_Paulo",
+                                        "accountType":  "atlassian"
+                                    },
+                       "updated":  "2025-10-24T11:31:58.383-0300",
+                       "status":  {
+                                      "self":  "https://cesar-team-tg0m2r5x.atlassian.net/rest/api/3/status/10034",
+                                      "description":  "",
+                                      "iconUrl":  "https://cesar-team-tg0m2r5x.atlassian.net/",
+                                      "name":  "In Progress",
+                                      "id":  "10034",
+                                      "statusCategory":  {
+                                                             "self":  "https://cesar-team-tg0m2r5x.atlassian.net/rest/api/3/statuscategory/4",
+                                                             "id":  4,
+                                                             "key":  "indeterminate",
+                                                             "colorName":  "yellow",
+                                                             "name":  "In Progress"
+                                                         }
+                                  }
+                   }
+    },
+    {
+        "expand":  "renderedFields,names,schema,operations,editmeta,changelog,versionedRepresentations",
+        "id":  "10043",
+        "self":  "https://cesar-team-tg0m2r5x.atlassian.net/rest/api/3/issue/10043",
+        "key":  "AP-11",
+        "fields":  {
+                       "summary":  "Processo de Integração",
+                       "issuetype":  {
+                                         "self":  "https://cesar-team-tg0m2r5x.atlassian.net/rest/api/3/issuetype/10034",
+                                         "id":  "10034",
+                                         "description":  "Tasks track small, distinct pieces of work.",
+                                         "iconUrl":  "https://cesar-team-tg0m2r5x.atlassian.net/rest/api/2/universal_avatar/view/type/issuetype/avatar/10318?size=medium",
+                                         "name":  "Task",
+                                         "subtask":  false,
+                                         "avatarId":  10318,
+                                         "entityId":  "792f7ae7-91cc-40d0-b859-fd1339776f82",
+                                         "hierarchyLevel":  0
+                                     },
+                       "created":  "2025-10-24T11:19:57.311-0300",
+                       "project":  {
+                                       "self":  "https://cesar-team-tg0m2r5x.atlassian.net/rest/api/3/project/10033",
+                                       "id":  "10033",
+                                       "key":  "AP",
+                                       "name":  "AnalisAI - projeto",
+                                       "projectTypeKey":  "software",
+                                       "simplified":  true,
+                                       "avatarUrls":  {
+                                                          "48x48":  "https://cesar-team-tg0m2r5x.atlassian.net/rest/api/3/universal_avatar/view/type/project/avatar/10412",
+                                                          "24x24":  "https://cesar-team-tg0m2r5x.atlassian.net/rest/api/3/universal_avatar/view/type/project/avatar/10412?size=small",
+                                                          "16x16":  "https://cesar-team-tg0m2r5x.atlassian.net/rest/api/3/universal_avatar/view/type/project/avatar/10412?size=xsmall",
+                                                          "32x32":  "https://cesar-team-tg0m2r5x.atlassian.net/rest/api/3/universal_avatar/view/type/project/avatar/10412?size=medium"
+                                                      }
+                                   },
+                       "assignee":  {
+                                        "self":  "https://cesar-team-tg0m2r5x.atlassian.net/rest/api/3/user?accountId=712020%3A53cb122d-83ea-4685-8d43-59874bcef615",
+                                        "accountId":  "712020:53cb122d-83ea-4685-8d43-59874bcef615",
+                                        "avatarUrls":  {
+                                                           "48x48":  "https://secure.gravatar.com/avatar/471b5c7bf99d0d567fb4b152bd5e4c66?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FBN-6.png",
+                                                           "24x24":  "https://secure.gravatar.com/avatar/471b5c7bf99d0d567fb4b152bd5e4c66?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FBN-6.png",
+                                                           "16x16":  "https://secure.gravatar.com/avatar/471b5c7bf99d0d567fb4b152bd5e4c66?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FBN-6.png",
+                                                           "32x32":  "https://secure.gravatar.com/avatar/471b5c7bf99d0d567fb4b152bd5e4c66?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FBN-6.png"
+                                                       },
+                                        "displayName":  "BEATRIZ PAREDES DO NASCIMENTO",
+                                        "active":  true,
+                                        "timeZone":  "America/Sao_Paulo",
+                                        "accountType":  "atlassian"
+                                    },
+                       "updated":  "2025-10-24T11:31:54.354-0300",
+                       "status":  {
+                                      "self":  "https://cesar-team-tg0m2r5x.atlassian.net/rest/api/3/status/10034",
+                                      "description":  "",
+                                      "iconUrl":  "https://cesar-team-tg0m2r5x.atlassian.net/",
+                                      "name":  "In Progress",
+                                      "id":  "10034",
+                                      "statusCategory":  {
+                                                             "self":  "https://cesar-team-tg0m2r5x.atlassian.net/rest/api/3/statuscategory/4",
+                                                             "id":  4,
+                                                             "key":  "indeterminate",
+                                                             "colorName":  "yellow",
+                                                             "name":  "In Progress"
+                                                         }
+                                  }
+                   }
+    },
+    {
+        "expand":  "renderedFields,names,schema,operations,editmeta,changelog,versionedRepresentations",
+        "id":  "10056",
+        "self":  "https://cesar-team-tg0m2r5x.atlassian.net/rest/api/3/issue/10056",
+        "key":  "AP-24",
+        "fields":  {
+                       "summary":  "EPIC-03: Avaliação de Experiência (90 dias)",
+                       "issuetype":  {
+                                         "self":  "https://cesar-team-tg0m2r5x.atlassian.net/rest/api/3/issuetype/10038",
+                                         "id":  "10038",
+                                         "description":  "Epics track collections of related bugs, stories, and tasks.",
+                                         "iconUrl":  "https://cesar-team-tg0m2r5x.atlassian.net/rest/api/2/universal_avatar/view/type/issuetype/avatar/10307?size=medium",
+                                         "name":  "Epic",
+                                         "subtask":  false,
+                                         "avatarId":  10307,
+                                         "entityId":  "33f4409d-5bf0-4027-b84f-6bb2ff3ea1ef",
+                                         "hierarchyLevel":  1
+                                     },
+                       "created":  "2025-10-24T11:28:55.227-0300",
+                       "project":  {
+                                       "self":  "https://cesar-team-tg0m2r5x.atlassian.net/rest/api/3/project/10033",
+                                       "id":  "10033",
+                                       "key":  "AP",
+                                       "name":  "AnalisAI - projeto",
+                                       "projectTypeKey":  "software",
+                                       "simplified":  true,
+                                       "avatarUrls":  {
+                                                          "48x48":  "https://cesar-team-tg0m2r5x.atlassian.net/rest/api/3/universal_avatar/view/type/project/avatar/10412",
+                                                          "24x24":  "https://cesar-team-tg0m2r5x.atlassian.net/rest/api/3/universal_avatar/view/type/project/avatar/10412?size=small",
+                                                          "16x16":  "https://cesar-team-tg0m2r5x.atlassian.net/rest/api/3/universal_avatar/view/type/project/avatar/10412?size=xsmall",
+                                                          "32x32":  "https://cesar-team-tg0m2r5x.atlassian.net/rest/api/3/universal_avatar/view/type/project/avatar/10412?size=medium"
+                                                      }
+                                   },
+                       "assignee":  null,
+                       "updated":  "2025-10-24T11:28:55.410-0300",
+                       "status":  {
+                                      "self":  "https://cesar-team-tg0m2r5x.atlassian.net/rest/api/3/status/10033",
+                                      "description":  "",
+                                      "iconUrl":  "https://cesar-team-tg0m2r5x.atlassian.net/",
+                                      "name":  "To Do",
+                                      "id":  "10033",
+                                      "statusCategory":  {
+                                                             "self":  "https://cesar-team-tg0m2r5x.atlassian.net/rest/api/3/statuscategory/2",
+                                                             "id":  2,
+                                                             "key":  "new",
+                                                             "colorName":  "blue-gray",
+                                                             "name":  "To Do"
+                                                         }
+                                  }
+                   }
+    },
+    {
+        "expand":  "renderedFields,names,schema,operations,editmeta,changelog,versionedRepresentations",
+        "id":  "10055",
+        "self":  "https://cesar-team-tg0m2r5x.atlassian.net/rest/api/3/issue/10055",
+        "key":  "AP-23",
+        "fields":  {
+                       "summary":  "EPIC-02: Onboarding de Novos Colaboradores",
+                       "issuetype":  {
+                                         "self":  "https://cesar-team-tg0m2r5x.atlassian.net/rest/api/3/issuetype/10038",
+                                         "id":  "10038",
+                                         "description":  "Epics track collections of related bugs, stories, and tasks.",
+                                         "iconUrl":  "https://cesar-team-tg0m2r5x.atlassian.net/rest/api/2/universal_avatar/view/type/issuetype/avatar/10307?size=medium",
+                                         "name":  "Epic",
+                                         "subtask":  false,
+                                         "avatarId":  10307,
+                                         "entityId":  "33f4409d-5bf0-4027-b84f-6bb2ff3ea1ef",
+                                         "hierarchyLevel":  1
+                                     },
+                       "created":  "2025-10-24T11:28:50.608-0300",
+                       "project":  {
+                                       "self":  "https://cesar-team-tg0m2r5x.atlassian.net/rest/api/3/project/10033",
+                                       "id":  "10033",
+                                       "key":  "AP",
+                                       "name":  "AnalisAI - projeto",
+                                       "projectTypeKey":  "software",
+                                       "simplified":  true,
+                                       "avatarUrls":  {
+                                                          "48x48":  "https://cesar-team-tg0m2r5x.atlassian.net/rest/api/3/universal_avatar/view/type/project/avatar/10412",
+                                                          "24x24":  "https://cesar-team-tg0m2r5x.atlassian.net/rest/api/3/universal_avatar/view/type/project/avatar/10412?size=small",
+                                                          "16x16":  "https://cesar-team-tg0m2r5x.atlassian.net/rest/api/3/universal_avatar/view/type/project/avatar/10412?size=xsmall",
+                                                          "32x32":  "https://cesar-team-tg0m2r5x.atlassian.net/rest/api/3/universal_avatar/view/type/project/avatar/10412?size=medium"
+                                                      }
+                                   },
+                       "assignee":  null,
+                       "updated":  "2025-10-24T11:28:50.690-0300",
+                       "status":  {
+                                      "self":  "https://cesar-team-tg0m2r5x.atlassian.net/rest/api/3/status/10033",
+                                      "description":  "",
+                                      "iconUrl":  "https://cesar-team-tg0m2r5x.atlassian.net/",
+                                      "name":  "To Do",
+                                      "id":  "10033",
+                                      "statusCategory":  {
+                                                             "self":  "https://cesar-team-tg0m2r5x.atlassian.net/rest/api/3/statuscategory/2",
+                                                             "id":  2,
+                                                             "key":  "new",
+                                                             "colorName":  "blue-gray",
+                                                             "name":  "To Do"
+                                                         }
+                                  }
+                   }
+    },
+    {
+        "expand":  "renderedFields,names,schema,operations,editmeta,changelog,versionedRepresentations",
+        "id":  "10054",
+        "self":  "https://cesar-team-tg0m2r5x.atlassian.net/rest/api/3/issue/10054",
+        "key":  "AP-22",
+        "fields":  {
+                       "summary":  "EPIC-01: Recrutamento de Talentos",
+                       "issuetype":  {
+                                         "self":  "https://cesar-team-tg0m2r5x.atlassian.net/rest/api/3/issuetype/10038",
+                                         "id":  "10038",
+                                         "description":  "Epics track collections of related bugs, stories, and tasks.",
+                                         "iconUrl":  "https://cesar-team-tg0m2r5x.atlassian.net/rest/api/2/universal_avatar/view/type/issuetype/avatar/10307?size=medium",
+                                         "name":  "Epic",
+                                         "subtask":  false,
+                                         "avatarId":  10307,
+                                         "entityId":  "33f4409d-5bf0-4027-b84f-6bb2ff3ea1ef",
+                                         "hierarchyLevel":  1
+                                     },
+                       "created":  "2025-10-24T11:28:39.257-0300",
+                       "project":  {
+                                       "self":  "https://cesar-team-tg0m2r5x.atlassian.net/rest/api/3/project/10033",
+                                       "id":  "10033",
+                                       "key":  "AP",
+                                       "name":  "AnalisAI - projeto",
+                                       "projectTypeKey":  "software",
+                                       "simplified":  true,
+                                       "avatarUrls":  {
+                                                          "48x48":  "https://cesar-team-tg0m2r5x.atlassian.net/rest/api/3/universal_avatar/view/type/project/avatar/10412",
+                                                          "24x24":  "https://cesar-team-tg0m2r5x.atlassian.net/rest/api/3/universal_avatar/view/type/project/avatar/10412?size=small",
+                                                          "16x16":  "https://cesar-team-tg0m2r5x.atlassian.net/rest/api/3/universal_avatar/view/type/project/avatar/10412?size=xsmall",
+                                                          "32x32":  "https://cesar-team-tg0m2r5x.atlassian.net/rest/api/3/universal_avatar/view/type/project/avatar/10412?size=medium"
+                                                      }
+                                   },
+                       "assignee":  null,
+                       "updated":  "2025-10-24T11:28:39.342-0300",
+                       "status":  {
+                                      "self":  "https://cesar-team-tg0m2r5x.atlassian.net/rest/api/3/status/10033",
+                                      "description":  "",
+                                      "iconUrl":  "https://cesar-team-tg0m2r5x.atlassian.net/",
+                                      "name":  "To Do",
+                                      "id":  "10033",
+                                      "statusCategory":  {
+                                                             "self":  "https://cesar-team-tg0m2r5x.atlassian.net/rest/api/3/statuscategory/2",
+                                                             "id":  2,
+                                                             "key":  "new",
+                                                             "colorName":  "blue-gray",
+                                                             "name":  "To Do"
+                                                         }
+                                  }
+                   }
+    },
+    {
+        "expand":  "renderedFields,names,schema,operations,editmeta,changelog,versionedRepresentations",
+        "id":  "10041",
+        "self":  "https://cesar-team-tg0m2r5x.atlassian.net/rest/api/3/issue/10041",
+        "key":  "AP-9",
+        "fields":  {
+                       "summary":  "Ajustar formulário de inscrição online",
+                       "issuetype":  {
+                                         "self":  "https://cesar-team-tg0m2r5x.atlassian.net/rest/api/3/issuetype/10034",
+                                         "id":  "10034",
+                                         "description":  "Tasks track small, distinct pieces of work.",
+                                         "iconUrl":  "https://cesar-team-tg0m2r5x.atlassian.net/rest/api/2/universal_avatar/view/type/issuetype/avatar/10318?size=medium",
+                                         "name":  "Task",
+                                         "subtask":  false,
+                                         "avatarId":  10318,
+                                         "entityId":  "792f7ae7-91cc-40d0-b859-fd1339776f82",
+                                         "hierarchyLevel":  0
+                                     },
+                       "created":  "2025-10-24T11:18:41.195-0300",
+                       "project":  {
+                                       "self":  "https://cesar-team-tg0m2r5x.atlassian.net/rest/api/3/project/10033",
+                                       "id":  "10033",
+                                       "key":  "AP",
+                                       "name":  "AnalisAI - projeto",
+                                       "projectTypeKey":  "software",
+                                       "simplified":  true,
+                                       "avatarUrls":  {
+                                                          "48x48":  "https://cesar-team-tg0m2r5x.atlassian.net/rest/api/3/universal_avatar/view/type/project/avatar/10412",
+                                                          "24x24":  "https://cesar-team-tg0m2r5x.atlassian.net/rest/api/3/universal_avatar/view/type/project/avatar/10412?size=small",
+                                                          "16x16":  "https://cesar-team-tg0m2r5x.atlassian.net/rest/api/3/universal_avatar/view/type/project/avatar/10412?size=xsmall",
+                                                          "32x32":  "https://cesar-team-tg0m2r5x.atlassian.net/rest/api/3/universal_avatar/view/type/project/avatar/10412?size=medium"
+                                                      }
+                                   },
+                       "assignee":  {
+                                        "self":  "https://cesar-team-tg0m2r5x.atlassian.net/rest/api/3/user?accountId=712020%3A2c5d0894-08c5-4e27-8c0d-f09de72e54f3",
+                                        "accountId":  "712020:2c5d0894-08c5-4e27-8c0d-f09de72e54f3",
+                                        "avatarUrls":  {
+                                                           "48x48":  "https://secure.gravatar.com/avatar/142273a1f5519643aea7616b090b440a?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FIS-1.png",
+                                                           "24x24":  "https://secure.gravatar.com/avatar/142273a1f5519643aea7616b090b440a?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FIS-1.png",
+                                                           "16x16":  "https://secure.gravatar.com/avatar/142273a1f5519643aea7616b090b440a?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FIS-1.png",
+                                                           "32x32":  "https://secure.gravatar.com/avatar/142273a1f5519643aea7616b090b440a?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FIS-1.png"
+                                                       },
+                                        "displayName":  "ISABELLA LUCIANA BATISTA SILVA",
+                                        "active":  true,
+                                        "timeZone":  "America/Sao_Paulo",
+                                        "accountType":  "atlassian"
+                                    },
+                       "updated":  "2025-10-24T11:27:42.435-0300",
+                       "status":  {
+                                      "self":  "https://cesar-team-tg0m2r5x.atlassian.net/rest/api/3/status/10035",
+                                      "description":  "",
+                                      "iconUrl":  "https://cesar-team-tg0m2r5x.atlassian.net/",
+                                      "name":  "Done",
+                                      "id":  "10035",
+                                      "statusCategory":  {
+                                                             "self":  "https://cesar-team-tg0m2r5x.atlassian.net/rest/api/3/statuscategory/3",
+                                                             "id":  3,
+                                                             "key":  "done",
+                                                             "colorName":  "green",
+                                                             "name":  "Done"
+                                                         }
+                                  }
+                   }
+    },
+    {
+        "expand":  "renderedFields,names,schema,operations,editmeta,changelog,versionedRepresentations",
+        "id":  "10040",
+        "self":  "https://cesar-team-tg0m2r5x.atlassian.net/rest/api/3/issue/10040",
+        "key":  "AP-8",
+        "fields":  {
+                       "summary":  "Agendar entrevistas",
+                       "issuetype":  {
+                                         "self":  "https://cesar-team-tg0m2r5x.atlassian.net/rest/api/3/issuetype/10034",
+                                         "id":  "10034",
+                                         "description":  "Tasks track small, distinct pieces of work.",
+                                         "iconUrl":  "https://cesar-team-tg0m2r5x.atlassian.net/rest/api/2/universal_avatar/view/type/issuetype/avatar/10318?size=medium",
+                                         "name":  "Task",
+                                         "subtask":  false,
+                                         "avatarId":  10318,
+                                         "entityId":  "792f7ae7-91cc-40d0-b859-fd1339776f82",
+                                         "hierarchyLevel":  0
+                                     },
+                       "created":  "2025-10-24T11:18:36.460-0300",
+                       "project":  {
+                                       "self":  "https://cesar-team-tg0m2r5x.atlassian.net/rest/api/3/project/10033",
+                                       "id":  "10033",
+                                       "key":  "AP",
+                                       "name":  "AnalisAI - projeto",
+                                       "projectTypeKey":  "software",
+                                       "simplified":  true,
+                                       "avatarUrls":  {
+                                                          "48x48":  "https://cesar-team-tg0m2r5x.atlassian.net/rest/api/3/universal_avatar/view/type/project/avatar/10412",
+                                                          "24x24":  "https://cesar-team-tg0m2r5x.atlassian.net/rest/api/3/universal_avatar/view/type/project/avatar/10412?size=small",
+                                                          "16x16":  "https://cesar-team-tg0m2r5x.atlassian.net/rest/api/3/universal_avatar/view/type/project/avatar/10412?size=xsmall",
+                                                          "32x32":  "https://cesar-team-tg0m2r5x.atlassian.net/rest/api/3/universal_avatar/view/type/project/avatar/10412?size=medium"
+                                                      }
+                                   },
+                       "assignee":  {
+                                        "self":  "https://cesar-team-tg0m2r5x.atlassian.net/rest/api/3/user?accountId=712020%3A53cb122d-83ea-4685-8d43-59874bcef615",
+                                        "accountId":  "712020:53cb122d-83ea-4685-8d43-59874bcef615",
+                                        "avatarUrls":  {
+                                                           "48x48":  "https://secure.gravatar.com/avatar/471b5c7bf99d0d567fb4b152bd5e4c66?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FBN-6.png",
+                                                           "24x24":  "https://secure.gravatar.com/avatar/471b5c7bf99d0d567fb4b152bd5e4c66?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FBN-6.png",
+                                                           "16x16":  "https://secure.gravatar.com/avatar/471b5c7bf99d0d567fb4b152bd5e4c66?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FBN-6.png",
+                                                           "32x32":  "https://secure.gravatar.com/avatar/471b5c7bf99d0d567fb4b152bd5e4c66?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FBN-6.png"
+                                                       },
+                                        "displayName":  "BEATRIZ PAREDES DO NASCIMENTO",
+                                        "active":  true,
+                                        "timeZone":  "America/Sao_Paulo",
+                                        "accountType":  "atlassian"
+                                    },
+                       "updated":  "2025-10-24T11:27:40.875-0300",
+                       "status":  {
+                                      "self":  "https://cesar-team-tg0m2r5x.atlassian.net/rest/api/3/status/10035",
+                                      "description":  "",
+                                      "iconUrl":  "https://cesar-team-tg0m2r5x.atlassian.net/",
+                                      "name":  "Done",
+                                      "id":  "10035",
+                                      "statusCategory":  {
+                                                             "self":  "https://cesar-team-tg0m2r5x.atlassian.net/rest/api/3/statuscategory/3",
+                                                             "id":  3,
+                                                             "key":  "done",
+                                                             "colorName":  "green",
+                                                             "name":  "Done"
+                                                         }
+                                  }
+                   }
+    },
+    {
+        "expand":  "renderedFields,names,schema,operations,editmeta,changelog,versionedRepresentations",
+        "id":  "10039",
+        "self":  "https://cesar-team-tg0m2r5x.atlassian.net/rest/api/3/issue/10039",
+        "key":  "AP-7",
+        "fields":  {
+                       "summary":  "Triagem de currículos",
+                       "issuetype":  {
+                                         "self":  "https://cesar-team-tg0m2r5x.atlassian.net/rest/api/3/issuetype/10034",
+                                         "id":  "10034",
+                                         "description":  "Tasks track small, distinct pieces of work.",
+                                         "iconUrl":  "https://cesar-team-tg0m2r5x.atlassian.net/rest/api/2/universal_avatar/view/type/issuetype/avatar/10318?size=medium",
+                                         "name":  "Task",
+                                         "subtask":  false,
+                                         "avatarId":  10318,
+                                         "entityId":  "792f7ae7-91cc-40d0-b859-fd1339776f82",
+                                         "hierarchyLevel":  0
+                                     },
+                       "created":  "2025-10-24T11:17:23.819-0300",
+                       "project":  {
+                                       "self":  "https://cesar-team-tg0m2r5x.atlassian.net/rest/api/3/project/10033",
+                                       "id":  "10033",
+                                       "key":  "AP",
+                                       "name":  "AnalisAI - projeto",
+                                       "projectTypeKey":  "software",
+                                       "simplified":  true,
+                                       "avatarUrls":  {
+                                                          "48x48":  "https://cesar-team-tg0m2r5x.atlassian.net/rest/api/3/universal_avatar/view/type/project/avatar/10412",
+                                                          "24x24":  "https://cesar-team-tg0m2r5x.atlassian.net/rest/api/3/universal_avatar/view/type/project/avatar/10412?size=small",
+                                                          "16x16":  "https://cesar-team-tg0m2r5x.atlassian.net/rest/api/3/universal_avatar/view/type/project/avatar/10412?size=xsmall",
+                                                          "32x32":  "https://cesar-team-tg0m2r5x.atlassian.net/rest/api/3/universal_avatar/view/type/project/avatar/10412?size=medium"
+                                                      }
+                                   },
+                       "assignee":  {
+                                        "self":  "https://cesar-team-tg0m2r5x.atlassian.net/rest/api/3/user?accountId=712020%3Ae6183950-4537-4d5a-80ed-a70e386c33dc",
+                                        "accountId":  "712020:e6183950-4537-4d5a-80ed-a70e386c33dc",
+                                        "avatarUrls":  {
+                                                           "48x48":  "https://secure.gravatar.com/avatar/499c88526b7b1986401167831225a433?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FCS-0.png",
+                                                           "24x24":  "https://secure.gravatar.com/avatar/499c88526b7b1986401167831225a433?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FCS-0.png",
+                                                           "16x16":  "https://secure.gravatar.com/avatar/499c88526b7b1986401167831225a433?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FCS-0.png",
+                                                           "32x32":  "https://secure.gravatar.com/avatar/499c88526b7b1986401167831225a433?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FCS-0.png"
+                                                       },
+                                        "displayName":  "CECÍLIA MEDEIROS SOUZA",
+                                        "active":  true,
+                                        "timeZone":  "America/Sao_Paulo",
+                                        "accountType":  "atlassian"
+                                    },
+                       "updated":  "2025-10-24T11:27:16.976-0300",
+                       "status":  {
+                                      "self":  "https://cesar-team-tg0m2r5x.atlassian.net/rest/api/3/status/10035",
+                                      "description":  "",
+                                      "iconUrl":  "https://cesar-team-tg0m2r5x.atlassian.net/",
+                                      "name":  "Done",
+                                      "id":  "10035",
+                                      "statusCategory":  {
+                                                             "self":  "https://cesar-team-tg0m2r5x.atlassian.net/rest/api/3/statuscategory/3",
+                                                             "id":  3,
+                                                             "key":  "done",
+                                                             "colorName":  "green",
+                                                             "name":  "Done"
+                                                         }
+                                  }
+                   }
+    },
+    {
+        "expand":  "renderedFields,names,schema,operations,editmeta,changelog,versionedRepresentations",
+        "id":  "10038",
+        "self":  "https://cesar-team-tg0m2r5x.atlassian.net/rest/api/3/issue/10038",
+        "key":  "AP-6",
+        "fields":  {
+                       "summary":  "Publicar vaga em sites parceiros",
+                       "issuetype":  {
+                                         "self":  "https://cesar-team-tg0m2r5x.atlassian.net/rest/api/3/issuetype/10034",
+                                         "id":  "10034",
+                                         "description":  "Tasks track small, distinct pieces of work.",
+                                         "iconUrl":  "https://cesar-team-tg0m2r5x.atlassian.net/rest/api/2/universal_avatar/view/type/issuetype/avatar/10318?size=medium",
+                                         "name":  "Task",
+                                         "subtask":  false,
+                                         "avatarId":  10318,
+                                         "entityId":  "792f7ae7-91cc-40d0-b859-fd1339776f82",
+                                         "hierarchyLevel":  0
+                                     },
+                       "created":  "2025-10-24T11:17:11.962-0300",
+                       "project":  {
+                                       "self":  "https://cesar-team-tg0m2r5x.atlassian.net/rest/api/3/project/10033",
+                                       "id":  "10033",
+                                       "key":  "AP",
+                                       "name":  "AnalisAI - projeto",
+                                       "projectTypeKey":  "software",
+                                       "simplified":  true,
+                                       "avatarUrls":  {
+                                                          "48x48":  "https://cesar-team-tg0m2r5x.atlassian.net/rest/api/3/universal_avatar/view/type/project/avatar/10412",
+                                                          "24x24":  "https://cesar-team-tg0m2r5x.atlassian.net/rest/api/3/universal_avatar/view/type/project/avatar/10412?size=small",
+                                                          "16x16":  "https://cesar-team-tg0m2r5x.atlassian.net/rest/api/3/universal_avatar/view/type/project/avatar/10412?size=xsmall",
+                                                          "32x32":  "https://cesar-team-tg0m2r5x.atlassian.net/rest/api/3/universal_avatar/view/type/project/avatar/10412?size=medium"
+                                                      }
+                                   },
+                       "assignee":  {
+                                        "self":  "https://cesar-team-tg0m2r5x.atlassian.net/rest/api/3/user?accountId=712020%3Ae6183950-4537-4d5a-80ed-a70e386c33dc",
+                                        "accountId":  "712020:e6183950-4537-4d5a-80ed-a70e386c33dc",
+                                        "avatarUrls":  {
+                                                           "48x48":  "https://secure.gravatar.com/avatar/499c88526b7b1986401167831225a433?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FCS-0.png",
+                                                           "24x24":  "https://secure.gravatar.com/avatar/499c88526b7b1986401167831225a433?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FCS-0.png",
+                                                           "16x16":  "https://secure.gravatar.com/avatar/499c88526b7b1986401167831225a433?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FCS-0.png",
+                                                           "32x32":  "https://secure.gravatar.com/avatar/499c88526b7b1986401167831225a433?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FCS-0.png"
+                                                       },
+                                        "displayName":  "CECÍLIA MEDEIROS SOUZA",
+                                        "active":  true,
+                                        "timeZone":  "America/Sao_Paulo",
+                                        "accountType":  "atlassian"
+                                    },
+                       "updated":  "2025-10-24T11:27:11.823-0300",
+                       "status":  {
+                                      "self":  "https://cesar-team-tg0m2r5x.atlassian.net/rest/api/3/status/10035",
+                                      "description":  "",
+                                      "iconUrl":  "https://cesar-team-tg0m2r5x.atlassian.net/",
+                                      "name":  "Done",
+                                      "id":  "10035",
+                                      "statusCategory":  {
+                                                             "self":  "https://cesar-team-tg0m2r5x.atlassian.net/rest/api/3/statuscategory/3",
+                                                             "id":  3,
+                                                             "key":  "done",
+                                                             "colorName":  "green",
+                                                             "name":  "Done"
+                                                         }
+                                  }
+                   }
+    },
+    {
+        "expand":  "renderedFields,names,schema,operations,editmeta,changelog,versionedRepresentations",
+        "id":  "10037",
+        "self":  "https://cesar-team-tg0m2r5x.atlassian.net/rest/api/3/issue/10037",
+        "key":  "AP-5",
+        "fields":  {
+                       "summary":  "Criar requisição de vaga para Analista de Marketing",
+                       "issuetype":  {
+                                         "self":  "https://cesar-team-tg0m2r5x.atlassian.net/rest/api/3/issuetype/10034",
+                                         "id":  "10034",
+                                         "description":  "Tasks track small, distinct pieces of work.",
+                                         "iconUrl":  "https://cesar-team-tg0m2r5x.atlassian.net/rest/api/2/universal_avatar/view/type/issuetype/avatar/10318?size=medium",
+                                         "name":  "Task",
+                                         "subtask":  false,
+                                         "avatarId":  10318,
+                                         "entityId":  "792f7ae7-91cc-40d0-b859-fd1339776f82",
+                                         "hierarchyLevel":  0
+                                     },
+                       "created":  "2025-10-24T11:17:01.157-0300",
+                       "project":  {
+                                       "self":  "https://cesar-team-tg0m2r5x.atlassian.net/rest/api/3/project/10033",
+                                       "id":  "10033",
+                                       "key":  "AP",
+                                       "name":  "AnalisAI - projeto",
+                                       "projectTypeKey":  "software",
+                                       "simplified":  true,
+                                       "avatarUrls":  {
+                                                          "48x48":  "https://cesar-team-tg0m2r5x.atlassian.net/rest/api/3/universal_avatar/view/type/project/avatar/10412",
+                                                          "24x24":  "https://cesar-team-tg0m2r5x.atlassian.net/rest/api/3/universal_avatar/view/type/project/avatar/10412?size=small",
+                                                          "16x16":  "https://cesar-team-tg0m2r5x.atlassian.net/rest/api/3/universal_avatar/view/type/project/avatar/10412?size=xsmall",
+                                                          "32x32":  "https://cesar-team-tg0m2r5x.atlassian.net/rest/api/3/universal_avatar/view/type/project/avatar/10412?size=medium"
+                                                      }
+                                   },
+                       "assignee":  {
+                                        "self":  "https://cesar-team-tg0m2r5x.atlassian.net/rest/api/3/user?accountId=712020%3A53cb122d-83ea-4685-8d43-59874bcef615",
+                                        "accountId":  "712020:53cb122d-83ea-4685-8d43-59874bcef615",
+                                        "avatarUrls":  {
+                                                           "48x48":  "https://secure.gravatar.com/avatar/471b5c7bf99d0d567fb4b152bd5e4c66?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FBN-6.png",
+                                                           "24x24":  "https://secure.gravatar.com/avatar/471b5c7bf99d0d567fb4b152bd5e4c66?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FBN-6.png",
+                                                           "16x16":  "https://secure.gravatar.com/avatar/471b5c7bf99d0d567fb4b152bd5e4c66?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FBN-6.png",
+                                                           "32x32":  "https://secure.gravatar.com/avatar/471b5c7bf99d0d567fb4b152bd5e4c66?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FBN-6.png"
+                                                       },
+                                        "displayName":  "BEATRIZ PAREDES DO NASCIMENTO",
+                                        "active":  true,
+                                        "timeZone":  "America/Sao_Paulo",
+                                        "accountType":  "atlassian"
+                                    },
+                       "updated":  "2025-10-24T11:27:10.222-0300",
+                       "status":  {
+                                      "self":  "https://cesar-team-tg0m2r5x.atlassian.net/rest/api/3/status/10035",
+                                      "description":  "",
+                                      "iconUrl":  "https://cesar-team-tg0m2r5x.atlassian.net/",
+                                      "name":  "Done",
+                                      "id":  "10035",
+                                      "statusCategory":  {
+                                                             "self":  "https://cesar-team-tg0m2r5x.atlassian.net/rest/api/3/statuscategory/3",
+                                                             "id":  3,
+                                                             "key":  "done",
+                                                             "colorName":  "green",
+                                                             "name":  "Done"
+                                                         }
+                                  }
+                   }
+    }
+]

@@ -1,0 +1,173 @@
+[
+    {
+        "issuetype":  "Task",
+        "created":  "2025-10-24T11:21:43.226-0300",
+        "updated":  "2025-10-24T11:32:20.842-0300",
+        "assignee":  "BEATRIZ PAREDES DO NASCIMENTO",
+        "key":  "AP-21",
+        "summary":  "Novos colaboradores integrados por mês",
+        "status":  "To Do"
+    },
+    {
+        "issuetype":  "Task",
+        "created":  "2025-10-24T11:21:38.965-0300",
+        "updated":  "2025-10-24T11:32:18.505-0300",
+        "assignee":  "CECÍLIA MEDEIROS SOUZA",
+        "key":  "AP-20",
+        "summary":  "Tempo médio de contratação por vaga",
+        "status":  "To Do"
+    },
+    {
+        "issuetype":  "Task",
+        "created":  "2025-10-24T11:21:33.711-0300",
+        "updated":  "2025-10-24T11:32:16.667-0300",
+        "assignee":  "BEATRIZ PAREDES DO NASCIMENTO",
+        "key":  "AP-19",
+        "summary":  "Vagas por status (em aberto, em andamento, concluídas)",
+        "status":  "To Do"
+    },
+    {
+        "issuetype":  "Task",
+        "created":  "2025-10-24T11:21:09.364-0300",
+        "updated":  "2025-10-24T11:32:13.409-0300",
+        "assignee":  "MELISSA VITÓRIA FILGUEIRAS PEREIRA",
+        "key":  "AP-18",
+        "summary":  "Atualizar status de efetivação",
+        "status":  "To Do"
+    },
+    {
+        "issuetype":  "Task",
+        "created":  "2025-10-24T11:21:03.112-0300",
+        "updated":  "2025-10-24T11:32:09.833-0300",
+        "assignee":  "CATARINA VIRGINIA LIMA LOUREIRO XAVIER",
+        "key":  "AP-17",
+        "summary":  "Reunião de avaliação com colaborador",
+        "status":  "To Do"
+    },
+    {
+        "issuetype":  "Task",
+        "created":  "2025-10-24T11:20:58.903-0300",
+        "updated":  "2025-10-24T11:32:07.867-0300",
+        "assignee":  "ISABELLA LUCIANA BATISTA SILVA",
+        "key":  "AP-16",
+        "summary":  "Coletar feedback dos gestores",
+        "status":  "To Do"
+    },
+    {
+        "issuetype":  "Task",
+        "created":  "2025-10-24T11:20:16.229-0300",
+        "updated":  "2025-10-24T11:32:03.798-0300",
+        "assignee":  "CATARINA VIRGINIA LIMA LOUREIRO XAVIER",
+        "key":  "AP-15",
+        "summary":  "Agendar treinamento inicial",
+        "status":  "To Do"
+    },
+    {
+        "issuetype":  "Task",
+        "created":  "2025-10-24T11:20:11.614-0300",
+        "updated":  "2025-10-24T11:32:02.051-0300",
+        "assignee":  "MELISSA VITÓRIA FILGUEIRAS PEREIRA",
+        "key":  "AP-14",
+        "summary":  "Montar kit de boas-vindas",
+        "status":  "To Do"
+    },
+    {
+        "issuetype":  "Task",
+        "created":  "2025-10-24T11:20:07.139-0300",
+        "updated":  "2025-10-24T11:32:00.339-0300",
+        "assignee":  "CECÍLIA MEDEIROS SOUZA",
+        "key":  "AP-13",
+        "summary":  "Criar acesso de e-mail corporativo",
+        "status":  "In Progress"
+    },
+    {
+        "issuetype":  "Task",
+        "created":  "2025-10-24T11:20:01.399-0300",
+        "updated":  "2025-10-24T11:31:58.383-0300",
+        "assignee":  "BEATRIZ PAREDES DO NASCIMENTO",
+        "key":  "AP-12",
+        "summary":  "Preparar documentação de admissão",
+        "status":  "In Progress"
+    },
+    {
+        "issuetype":  "Task",
+        "created":  "2025-10-24T11:19:57.311-0300",
+        "updated":  "2025-10-24T11:31:54.354-0300",
+        "assignee":  "BEATRIZ PAREDES DO NASCIMENTO",
+        "key":  "AP-11",
+        "summary":  "Processo de Integração",
+        "status":  "In Progress"
+    },
+    {
+        "issuetype":  "Epic",
+        "created":  "2025-10-24T11:28:55.227-0300",
+        "updated":  "2025-10-24T11:28:55.410-0300",
+        "assignee":  null,
+        "key":  "AP-24",
+        "summary":  "EPIC-03: Avaliação de Experiência (90 dias)",
+        "status":  "To Do"
+    },
+    {
+        "issuetype":  "Epic",
+        "created":  "2025-10-24T11:28:50.608-0300",
+        "updated":  "2025-10-24T11:28:50.690-0300",
+        "assignee":  null,
+        "key":  "AP-23",
+        "summary":  "EPIC-02: Onboarding de Novos Colaboradores",
+        "status":  "To Do"
+    },
+    {
+        "issuetype":  "Epic",
+        "created":  "2025-10-24T11:28:39.257-0300",
+        "updated":  "2025-10-24T11:28:39.342-0300",
+        "assignee":  null,
+        "key":  "AP-22",
+        "summary":  "EPIC-01: Recrutamento de Talentos",
+        "status":  "To Do"
+    },
+    {
+        "issuetype":  "Task",
+        "created":  "2025-10-24T11:18:41.195-0300",
+        "updated":  "2025-10-24T11:27:42.435-0300",
+        "assignee":  "ISABELLA LUCIANA BATISTA SILVA",
+        "key":  "AP-9",
+        "summary":  "Ajustar formulário de inscrição online",
+        "status":  "Done"
+    },
+    {
+        "issuetype":  "Task",
+        "created":  "2025-10-24T11:18:36.460-0300",
+        "updated":  "2025-10-24T11:27:40.875-0300",
+        "assignee":  "BEATRIZ PAREDES DO NASCIMENTO",
+        "key":  "AP-8",
+        "summary":  "Agendar entrevistas",
+        "status":  "Done"
+    },
+    {
+        "issuetype":  "Task",
+        "created":  "2025-10-24T11:17:23.819-0300",
+        "updated":  "2025-10-24T11:27:16.976-0300",
+        "assignee":  "CECÍLIA MEDEIROS SOUZA",
+        "key":  "AP-7",
+        "summary":  "Triagem de currículos",
+        "status":  "Done"
+    },
+    {
+        "issuetype":  "Task",
+        "created":  "2025-10-24T11:17:11.962-0300",
+        "updated":  "2025-10-24T11:27:11.823-0300",
+        "assignee":  "CECÍLIA MEDEIROS SOUZA",
+        "key":  "AP-6",
+        "summary":  "Publicar vaga em sites parceiros",
+        "status":  "Done"
+    },
+    {
+        "issuetype":  "Task",
+        "created":  "2025-10-24T11:17:01.157-0300",
+        "updated":  "2025-10-24T11:27:10.222-0300",
+        "assignee":  "BEATRIZ PAREDES DO NASCIMENTO",
+        "key":  "AP-5",
+        "summary":  "Criar requisição de vaga para Analista de Marketing",
+        "status":  "Done"
+    }
+]

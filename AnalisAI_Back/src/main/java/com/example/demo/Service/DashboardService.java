@@ -10,31 +10,18 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
-/**
- * Serviço focado em calcular as métricas para o Dashboard de Progresso (Feature 2).
- * Este serviço usa o JiraClient para buscar os dados VIVOS do Jira.
- */
 @Slf4j
 @Service
 public class DashboardService {
 
     private final JiraClient jiraClient;
 
-    // Injeção de dependência via construtor
     public DashboardService(JiraClient jiraClient) {
         this.jiraClient = jiraClient;
     }
 
-    /**
-     * Calcula as estatísticas de progresso do projeto com base no JQL padrão.
-     * AGORA RECEBE O ACCESS TOKEN PARA PASSAR AO JIRA CLIENT.
-     *
-     * @param accessToken O token de autenticação OAuth 2.0 (Bearer).
-     * @return DTO com todas as métricas para o frontend.
-     */
     public DashboardStatsDTO getProjectStats(String accessToken) {
-        // 1. Busca todos os resumos de issues do Jira
-        // ⬇️ CORREÇÃO AQUI: Passa o accessToken
+
         List<IssueSummary> allIssues = jiraClient.fetchAllAsSummaries(accessToken);
 
         DashboardStatsDTO stats = new DashboardStatsDTO();
@@ -49,46 +36,57 @@ public class DashboardService {
         int total = allIssues.size();
         stats.setTotalTasks(total);
 
-        // 2. Agrupa as tasks por Status (para os gráficos)
+        // ================================
+        // AGRUPAMENTO POR STATUS (CORRIGIDO)
+        // ================================
         Map<String, Long> tasksByStatus = allIssues.stream()
                 .collect(Collectors.groupingBy(
-                        // Garante que status nulos não quebrem o agrupamento
-                        issue -> (issue.getStatus() != null && !issue.getStatus().isBlank()) ? issue.getStatus() : "Sem Status",
+                        issue -> (issue.status() != null && !issue.status().isBlank())
+                                ? issue.status()
+                                : "Sem Status",
                         Collectors.counting()
                 ));
+
         stats.setTasksByStatus(tasksByStatus);
 
-        // 3. Calcula contagens específicas (Concluídas, Em Andamento, A Fazer)
-        // (Usamos "Done" e "In Progress" como padrão do Jira, ajuste se seus status forem diferentes)
+        // ================================
+        // CONTAGENS BÁSICAS
+        // ================================
         int completed = tasksByStatus.getOrDefault("Done", 0L).intValue();
         stats.setCompletedTasks(completed);
         stats.setInProgressTasks(tasksByStatus.getOrDefault("In Progress", 0L).intValue());
         stats.setTodoTasks(tasksByStatus.getOrDefault("To Do", 0L).intValue());
 
-
-        // 4. Calcula "Em Atraso" (Delayed)
+        // ================================
+        // CÁLCULO DE TAREFAS ATRASADAS
+        // ================================
         LocalDate today = LocalDate.now();
+
         int delayed = (int) allIssues.stream().filter(issue -> {
+
             boolean isOverdue = false;
-            // Verifica se tem data de entrega
-            if (issue.getDuedate() != null && !issue.getDuedate().isBlank()) {
+
+            if (issue.duedate() != null && !issue.duedate().isBlank()) {
                 try {
-                    // O Jira retorna 'duedate' no formato "YYYY-MM-DD"
-                    LocalDate dueDate = LocalDate.parse(issue.getDuedate());
+                    LocalDate dueDate = LocalDate.parse(issue.duedate());
                     isOverdue = dueDate.isBefore(today);
                 } catch (Exception e) {
-                    log.error("Erro ao parsear duedate: {} (Key: {})", issue.getDuedate(), issue.getKey(), e);
-                    // Ignora erro de parsing, não conta como atrasada
+                    log.error("Erro ao parsear duedate: {} (Key: {})",
+                            issue.duedate(), issue.key(), e);
                 }
             }
-            // Uma task está "atrasada" se a data de entrega passou E ela AINDA NÃO FOI CONCLUÍDA
-            boolean isCompleted = "Done".equalsIgnoreCase(issue.getStatus());
+
+            boolean isCompleted = "Done".equalsIgnoreCase(issue.status());
+
             return isOverdue && !isCompleted;
+
         }).count();
+
         stats.setDelayedTasks(delayed);
 
-
-        // 5. Calcula o Percentual Geral de Progresso
+        // ================================
+        // PERCENTUAL TOTAL DE PROGRESSO
+        // ================================
         double percentage = (total == 0) ? 0.0 : ((double) completed / total) * 100.0;
         stats.setProgressPercentage(percentage);
 
@@ -98,4 +96,3 @@ public class DashboardService {
         return stats;
     }
 }
-
