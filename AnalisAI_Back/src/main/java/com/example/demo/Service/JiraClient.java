@@ -22,8 +22,10 @@ public class JiraClient {
 
     // Endpoints da API REST v3 (requerem CloudID)
     private static final String API_V3_BASE = "/rest/api/3";
-    private static final String SEARCH_JQL_PATH = API_V3_BASE + "/search/jql";
-    private static final String PROJECT_SEARCH_PATH = API_V3_BASE + "/project/search";
+    private static final String SEARCH_JQL_PATH = API_V3_BASE + "/search"; // Endpoint de JQL corrigido
+
+    // ✅ ALTERAÇÃO 1: Mudado de "/project/search" para "/project"
+    private static final String PROJECT_SEARCH_PATH = API_V3_BASE + "/project";
 
     // Endpoints da API Global (não requerem CloudID)
     private static final String MYSELF_PATH = "/me"; // API global
@@ -95,14 +97,18 @@ public class JiraClient {
      * AGORA ACEITA O ACCESS TOKEN COMO PARÂMETRO
      */
     public String listProjectsRaw(String accessToken) {
+        // ✅ CORREÇÃO: Adicionando paginação de volta ao endpoint /project
         return webClientV3.get()
-                .uri(PROJECT_SEARCH_PATH)
+                .uri(uriBuilder -> uriBuilder
+                        .path(PROJECT_SEARCH_PATH) // Isto vai usar o path "/project"
+                        .queryParam("startAt", 0)
+                        .queryParam("maxResults", 50)
+                        .build())
                 .header(HttpHeaders.AUTHORIZATION, "Bearer " + accessToken) // Usa o token OAuth
                 .retrieve()
                 .bodyToMono(String.class)
                 .block();
     }
-
     /**
      * Busca JQL (paginada) na API V3
      * AGORA ACEITA O ACCESS TOKEN COMO PARÂMETRO
@@ -141,6 +147,7 @@ public class JiraClient {
                     token
             );
 
+            // ✅ Também corrigi o endpoint da JQL aqui, de /search/jql para /search
             JiraSearchJqlResponse resp = webClientV3.post()
                     .uri(SEARCH_JQL_PATH)
                     .header(HttpHeaders.AUTHORIZATION, "Bearer " + accessToken) // Usa o token OAuth
@@ -170,4 +177,3 @@ public class JiraClient {
         return out;
     }
 }
-
