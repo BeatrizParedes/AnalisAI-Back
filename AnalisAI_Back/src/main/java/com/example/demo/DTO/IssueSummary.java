@@ -11,7 +11,7 @@ public record IssueSummary(
         String status,
         String assignee,
         String project,
-        String issueType,
+        String issuetype,
         String created,
         String updated,
         String duedate   // <-- CAMPO ADICIONADO

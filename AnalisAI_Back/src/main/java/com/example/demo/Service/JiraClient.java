@@ -84,6 +84,7 @@ public class JiraClient {
                 .block();
     }
 
+    @SuppressWarnings("unchecked") // Aplicado aqui para os casts de 'List<Map<String, Object>>'
     public String searchPageRaw(String apiToken, String nextPageToken) {
         try {
             Map<String, Object> body = new LinkedHashMap<>();
@@ -148,6 +149,7 @@ public class JiraClient {
         }
     }
 
+    @SuppressWarnings("unchecked") // Aplicado aqui para o cast de 'List<Map<String, Object>>'
     public List<IssueSummary> fetchAllAsSummaries(String apiToken) {
         List<IssueSummary> summaries = new ArrayList<>();
         String nextPageToken = null;
@@ -187,9 +189,12 @@ public class JiraClient {
         return summaries;
     }
 
+    @SuppressWarnings("unchecked") // Aplicado aqui para os casts de 'Map<String, Object>'
     private IssueSummary convertToSummary(Map<String, Object> issueMap) {
         try {
             String key = (String) issueMap.get("key");
+            
+            // O cast problemático
             Map<String, Object> fields = (Map<String, Object>) issueMap.get("fields");
 
             if (fields == null) {
@@ -208,6 +213,7 @@ public class JiraClient {
 
             String summary = (String) fields.getOrDefault("summary", "");
 
+            // Casts de objetos aninhados que também precisam ser suprimidos
             Map<String, Object> statusObj = (Map<String, Object>) fields.get("status");
             String status = statusObj != null ? (String) statusObj.get("name") : null;
 
