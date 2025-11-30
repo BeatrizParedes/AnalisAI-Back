@@ -1,16 +1,30 @@
-// src/main/java/com/example/demo/service/dto/IssueSummary.java
 package com.example.demo.DTO;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
+/**
+ * DTO (Data Transfer Object) para resumir as informações essenciais de uma Issue do Jira.
+ * O recurso 'record' exige Java 16 ou superior.
+ * Campos mapeiam os dados que são solicitados e recebidos da API do Jira.
+ */
+public record IssueSummary(
+        String key,
+        String summary,
+        String status,
+        String assignee,
+        String project,
+        String issueType,
+        String created,
+        String updated,
+        String duedate   // <-- CAMPO ADICIONADO
+) {
 
-@Data
-@AllArgsConstructor
-public class IssueSummary {
-    private String key;
-    private String summary;
-    private String status;         // ex.: "To Do", "In Progress", "Done"
-    private String assignee;       // ex.: "Fulano"
-    private String updated;        // ISO string do updated
-    private String duedate;        // ⬅️ CAMPO ADICIONADO
+    @Override
+    public String toString() {
+        return "IssueSummary{" +
+                "key='" + key + '\'' +
+                ", summary='" + summary + '\'' +
+                ", status='" + status + '\'' +
+                ", project='" + project + '\'' +
+                ", duedate='" + duedate + '\'' +
+                '}';
+    }
 }
