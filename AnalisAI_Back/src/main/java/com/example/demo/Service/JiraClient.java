@@ -39,7 +39,8 @@ public class JiraClient {
     private final ObjectMapper mapper = new ObjectMapper();
 
     private static final String BASE_URL = "https://apisandboxps.atlassian.net/rest/api/3";
-    private static final String SEARCH_JQL_PATH = "/search";
+    // ✅ Alterado para /search/jql
+    private static final String SEARCH_JQL_PATH = "/search/jql";
 
     public JiraClient(WebClient.Builder builder) {
         this.webClient = builder
@@ -64,17 +65,22 @@ public class JiraClient {
     // ==========================================================
     public String searchPageRaw(String encodedToken, String nextPageToken) {
 
+        // ✅ Alinhado campos com o PowerShell
         String body = """
                 {
                   "jql": "project = AP ORDER BY updated DESC",
                   "startAt": %s,
                   "maxResults": 50,
                   "fields": [
+                    "key",
                     "summary",
-                    "created",
                     "status",
-                    "priority",
-                    "description"
+                    "assignee",
+                    "updated",
+                    "created",
+                    "project",
+                    "issuetype",
+                    "sprint"
                   ]
                 }
                 """.formatted(nextPageToken == null ? "0" : nextPageToken);
@@ -99,17 +105,22 @@ public class JiraClient {
         int total;
 
         do {
+            // ✅ Alinhado campos com o PowerShell
             String body = """
                     {
                       "jql": "project = AP ORDER BY updated DESC",
                       "startAt": %s,
                       "maxResults": 50,
                       "fields": [
+                        "key",
                         "summary",
-                        "created",
                         "status",
-                        "priority",
-                        "description"
+                        "assignee",
+                        "updated",
+                        "created",
+                        "project",
+                        "issuetype",
+                        "sprint"
                       ]
                     }
                     """.formatted(startAt);
