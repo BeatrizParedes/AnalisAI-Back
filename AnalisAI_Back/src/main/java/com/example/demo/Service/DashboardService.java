@@ -10,8 +10,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
-@Slf4j
 @Service
+@Slf4j
 public class DashboardService {
 
     private final JiraClient jiraClient;
@@ -22,10 +22,8 @@ public class DashboardService {
 
     public DashboardStatsDTO getProjectStats() {
 
-        // pega token direto do properties
-        String encodedToken = jiraClient.getEncodedToken();
-
-        List<IssueSummary> allIssues = jiraClient.fetchAllAsSummaries(encodedToken);
+        // Busca todas as issues diretamente, sem precisar passar token
+        List<IssueSummary> allIssues = jiraClient.fetchAllAsSummaries();
 
         DashboardStatsDTO stats = new DashboardStatsDTO();
 
