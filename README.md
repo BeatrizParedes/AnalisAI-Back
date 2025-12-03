@@ -82,7 +82,8 @@ mvn spring-boot:run
 - Catarina Loureiro
 - Cecília Medeiros 
 - Isabella Batista
-- Maria Gabriela Damásio 
+- Maria Gabriela Damásio
+- Melissa Filgueiras
 - José Leandro Morais
 
 ### 🔗Frontend do Projeto: [AnalisAI - Frontend](https://github.com/Cecimedeiros/AnalisAI-Front.git)
