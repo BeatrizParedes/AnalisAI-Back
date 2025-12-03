@@ -10,8 +10,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
-@Slf4j
 @Service
+@Slf4j
 public class DashboardService {
 
     private final JiraClient jiraClient;
@@ -20,9 +20,10 @@ public class DashboardService {
         this.jiraClient = jiraClient;
     }
 
-    public DashboardStatsDTO getProjectStats(String accessToken) {
+    public DashboardStatsDTO getProjectStats() {
 
-        List<IssueSummary> allIssues = jiraClient.fetchAllAsSummaries(accessToken);
+        // Busca todas as issues diretamente, sem precisar passar token
+        List<IssueSummary> allIssues = jiraClient.fetchAllAsSummaries();
 
         DashboardStatsDTO stats = new DashboardStatsDTO();
 
@@ -36,9 +37,6 @@ public class DashboardService {
         int total = allIssues.size();
         stats.setTotalTasks(total);
 
-        // ================================
-        // AGRUPAMENTO POR STATUS (CORRIGIDO)
-        // ================================
         Map<String, Long> tasksByStatus = allIssues.stream()
                 .collect(Collectors.groupingBy(
                         issue -> (issue.status() != null && !issue.status().isBlank())
@@ -49,21 +47,13 @@ public class DashboardService {
 
         stats.setTasksByStatus(tasksByStatus);
 
-        // ================================
-        // CONTAGENS BÁSICAS
-        // ================================
         int completed = tasksByStatus.getOrDefault("Done", 0L).intValue();
         stats.setCompletedTasks(completed);
         stats.setInProgressTasks(tasksByStatus.getOrDefault("In Progress", 0L).intValue());
         stats.setTodoTasks(tasksByStatus.getOrDefault("To Do", 0L).intValue());
 
-        // ================================
-        // CÁLCULO DE TAREFAS ATRASADAS
-        // ================================
         LocalDate today = LocalDate.now();
-
         int delayed = (int) allIssues.stream().filter(issue -> {
-
             boolean isOverdue = false;
 
             if (issue.duedate() != null && !issue.duedate().isBlank()) {
@@ -84,13 +74,10 @@ public class DashboardService {
 
         stats.setDelayedTasks(delayed);
 
-        // ================================
-        // PERCENTUAL TOTAL DE PROGRESSO
-        // ================================
         double percentage = (total == 0) ? 0.0 : ((double) completed / total) * 100.0;
         stats.setProgressPercentage(percentage);
 
-        log.info("Estatísticas calculadas: Total={}, Concluídas={}, EmAtraso={}, Progresso={}%",
+        log.info("Estatísticas calculadas: Total={}, Concluídas={}, EmAtraso={}, Progresso={}%", 
                 total, completed, delayed, String.format("%.2f", percentage));
 
         return stats;

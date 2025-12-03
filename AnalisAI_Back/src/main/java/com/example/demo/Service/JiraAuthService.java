@@ -29,7 +29,7 @@ public class JiraAuthService {
 
         try {
             client.get()
-                    .uri("https://api.atlassian.com/ex/jira/me")
+                    .uri("https://cesar-team-tg0m2r5x.atlassian.net/rest/api/3/myself")
                     .retrieve()
                     .bodyToMono(String.class)
                     .block();
