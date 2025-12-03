@@ -50,28 +50,39 @@ O **analisAI** é uma ferramenta de **análise e planejamento estratégico** que
 ## 🚀 Como Rodar a Aplicação
 
 ### 1. Pré-requisitos
-- Java 17+  
-- Node.js 18+  
-- Angular CLI  
+- Java 17+    
 - MariaDB em execução  
 - Conta Jira Cloud com API Token  
-- Chave de API do provedor de LLM  
+- Chave de API do provedor de LLM
+- Instalar o Docker Desktop  
 
-### 2. Rodando o Backend e Frontend
+### 2. Rodando o Backend
 ```bash
-# 2.1 Navegue até a pasta do backend
-cd backend
+# 2.1 Instale e abra o Docker Desktop
 
-# 2.2 Compile e rode o backend
-./mvnw spring-boot:run
+# 2.2 Clone o projeto 
+https://github.com/BeatrizParedes/AnalisAI-Back.git
 
-# 2.3 Abra um novo terminal para o frontend
-cd frontend
+# 2.3 Navegue até a pasta do backend
+cd AnalisAI_Backend
 
-# 2.4 Instale dependências do Angular
-npm install
+# 2.4 Rode o comando: 
+docker compose up -d
 
-# 2.5 Rode o frontend em modo desenvolvimento
-ng serve
+# 2.5 Verifique o containers: 
+docker ps
+
+# 2.6 Compile e rode o backend
+mvn spring-boot:run
+
 ````
+### 👩‍💻 Equipe
+
+- Beatriz Paredes 
+- Catarina Loureiro
+- Cecília Medeiros 
+- Isabella Batista
+- Maria Gabriela Damásio 
+- José Leandro Morais
+
 ### 🔗Frontend do Projeto: [AnalisAI - Frontend](https://github.com/Cecimedeiros/AnalisAI-Front.git)
